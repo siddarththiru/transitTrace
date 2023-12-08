@@ -1,10 +1,15 @@
+/*
+*Tram.java
+*@author Siddarth Thirunavukkarasu
+*17-11-2023
+*/
 package transittrace;
 public class Tram extends TransportMode{
     private double emission;
-    private String emissionData;
+    private double emissionValue;
     public Tram() {
         emission = 0;
-        emissionData = "29";
+        emissionValue = 29;
     }
     
     public Tram(double emission){
@@ -20,6 +25,9 @@ public class Tram extends TransportMode{
     }
     
     @Override
-    public void calculateCo2Emission() {}
+    public double calculateCo2Emission() {
+        emission = emissionValue*distance;
+        return emission;
+    }
     
 }

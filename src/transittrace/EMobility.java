@@ -19,6 +19,8 @@ public class EMobility extends TransportMode{
     }
     
     @Override
-    public void calculateCo2Emission() {}
+    public double calculateCo2Emission() {
+        return emission;
+    }
     
 }

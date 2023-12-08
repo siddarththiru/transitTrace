@@ -1,18 +1,23 @@
+/*
+*TransportMode.java
+*@author Siddarth Thirunavukkarasu
+*17-11-2023
+*/
 package transittrace;
 
 public abstract class TransportMode {
-    double duration;
+    double distance;
     
     public TransportMode(){
-        duration = 0;
+        distance = 0;
     }
-    public void setDuration(double duration){
-        this.duration = duration;
+    public void setDistance(double distance){
+        this.distance = distance;
     }
-    public Double getDuration(){
-        return duration;
+    public Double getDistance(){
+        return distance;
     }
     
-    public abstract void calculateCo2Emission();
+    public abstract double calculateCo2Emission();
     
 }

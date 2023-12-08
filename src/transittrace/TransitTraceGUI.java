@@ -1,14 +1,117 @@
 package transittrace;
 
-public class TransitTraceGUI extends javax.swing.JFrame {
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+public class TransitTraceGUI extends javax.swing.JFrame {
+    ArrayList <TransportMode> transportModes;
+    ArrayList <JLabel> step3Labels;
     /**
      * Creates new form TransitTraceGUI
      */
+    
+    //Market Place
+    private ShoppingCart cart;
+    private Product waterBottle;
+    private Product tBrush;
+    private Product fairCoffee;
+    private Product cutlery;
+    private Product jeans;
+    private Product bulb;
+    private Product sBag;
+    private Product nBooks;
+    private Product fWash;
+    private Product jewelry;
+    private Product cCup;
+    private Product trashBags;
+    private Product charger;
+    private Product cBin;
+    private Product shirt;
+    
+    
+    private String Answer;
+    private int i;
+    private int step3check;
+    private int difficulty;
     public TransitTraceGUI() {
+        cart = new ShoppingCart();
         initComponents();
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(false);
+        step2homePnl.setVisible(false);
+        step3homePnl.setVisible(false);
+        transportModes = new ArrayList<>();
+        
+        step3Labels = new ArrayList<>();
+        step3Labels.add(step3VehicleLbl1);
+        step3Labels.add(step3VehicleLbl2);
+        step3Labels.add(step3VehicleLbl3);
+        step3Labels.add(step3VehicleLbl4);
+        step3Labels.add(step3VehicleLbl5);
+        step3Labels.add(step3VehicleLbl6);
+        step3Labels.add(step3VehicleLbl7);
+        step3VehicleLbl1.setVisible(false);
+        step3VehicleLbl2.setVisible(false);
+        step3VehicleLbl3.setVisible(false);
+        step3VehicleLbl4.setVisible(false);
+        step3VehicleLbl5.setVisible(false);
+        step3VehicleLbl6.setVisible(false);
+        step3VehicleLbl7.setVisible(false);
+        
+        step3Labels.add(step3EmissionLbl1);
+        step3Labels.add(step3EmissionLbl2);
+        step3Labels.add(step3EmissionLbl3);
+        step3Labels.add(step3EmissionLbl4);
+        step3Labels.add(step3EmissionLbl5);
+        step3Labels.add(step3EmissionLbl6);
+        step3Labels.add(step3EmissionLbl7);
+        step3EmissionLbl1.setVisible(false);
+        step3EmissionLbl2.setVisible(false);
+        step3EmissionLbl3.setVisible(false);
+        step3EmissionLbl4.setVisible(false);
+        step3EmissionLbl5.setVisible(false);
+        step3EmissionLbl6.setVisible(false);
+        step3EmissionLbl7.setVisible(false);
+        
+        i=0;
+        difficulty=0;
+        Answer="";
+        QuestionLbl.setVisible(false);
+        option1Btn.setVisible(false);
+        option2Btn.setVisible(false);
+        option3Btn.setVisible(false);
+        option4Btn.setVisible(false);
+        SubmitBtn.setVisible(false);
+        answerLbl.setVisible(false);
+        FactLbl.setVisible(false);
+        
+    }
+    
+    private void resetStep2Page(){
+        step2CarBtn.setEnabled(false);
+        step2CarElectricBtn.setEnabled(false);
+        step2CarHybridBtn.setEnabled(false);
+        step2CarPetrolBtn.setEnabled(false);
+        step2CarDieselBtn.setEnabled(false);
+        
+        step2MetroBtn.setEnabled(false);
+        step2MetroElectricBtn.setEnabled(false);
+        step2MetroDieselBtn.setEnabled(false);
+        
+        step2TrainBtn.setEnabled(false);
+        step2TrainElectricBtn.setEnabled(false);
+        step2TrainDieselBtn.setEnabled(false);
+    }
+    
+    private double sumEmissions(){
+        double totalEmission = 0;
+        step3check=0;
+        for (TransportMode myT: transportModes){
+            totalEmission = totalEmission + myT.calculateCo2Emission();
+            step3check++;
+        }
+        return totalEmission;
     }
 
     /**
@@ -20,6 +123,10 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        step2CarType = new javax.swing.ButtonGroup();
+        step2MetroType = new javax.swing.ButtonGroup();
+        step2TrainType = new javax.swing.ButtonGroup();
+        quizOptions = new javax.swing.ButtonGroup();
         menuPnl = new javax.swing.JPanel();
         homeButtonPnl = new javax.swing.JPanel();
         homeLbl = new javax.swing.JLabel();
@@ -47,98 +154,169 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         motorbikeSpnr = new javax.swing.JSpinner();
         tramSpnr = new javax.swing.JSpinner();
         trainSpnr = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
+        instructionLbl1 = new javax.swing.JLabel();
+        step2homePnl = new javax.swing.JPanel();
+        step2TitleLbl = new javax.swing.JLabel();
+        step2CarBtn = new javax.swing.JToggleButton();
+        step2MetroBtn = new javax.swing.JToggleButton();
+        step2TrainBtn = new javax.swing.JToggleButton();
+        step2UserInfoLbl = new javax.swing.JLabel();
+        step2NextBtn = new javax.swing.JButton();
+        step2CarElectricBtn = new javax.swing.JToggleButton();
+        step2CarHybridBtn = new javax.swing.JToggleButton();
+        step2CarPetrolBtn = new javax.swing.JToggleButton();
+        step2CarDieselBtn = new javax.swing.JToggleButton();
+        step2MetroElectricBtn = new javax.swing.JToggleButton();
+        step2MetroDieselBtn = new javax.swing.JToggleButton();
+        step2TrainElectricBtn = new javax.swing.JToggleButton();
+        step2TrainDieselBtn = new javax.swing.JToggleButton();
+        step3homePnl = new javax.swing.JPanel();
+        step3TitleLbl = new javax.swing.JLabel();
+        step3TitleResultLbl = new javax.swing.JLabel();
+        step3VehicleLbl1 = new javax.swing.JLabel();
+        step3VehicleLbl2 = new javax.swing.JLabel();
+        step3VehicleLbl3 = new javax.swing.JLabel();
+        step3VehicleLbl4 = new javax.swing.JLabel();
+        step3VehicleLbl5 = new javax.swing.JLabel();
+        step3VehicleLbl6 = new javax.swing.JLabel();
+        step3VehicleLbl7 = new javax.swing.JLabel();
+        step3EmissionLbl1 = new javax.swing.JLabel();
+        step3EmissionLbl5 = new javax.swing.JLabel();
+        step3EmissionLbl3 = new javax.swing.JLabel();
+        step3EmissionLbl2 = new javax.swing.JLabel();
+        step3EmissionLbl6 = new javax.swing.JLabel();
+        step3EmissionLbl7 = new javax.swing.JLabel();
+        step3EmissionLbl4 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        step3MarketplaceBtn = new javax.swing.JButton();
+        step3HomeBtn = new javax.swing.JButton();
         marketplacePnl = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        wBottleLbl = new javax.swing.JLabel();
-        binLbl = new javax.swing.JLabel();
-        tBrushLbl = new javax.swing.JLabel();
-        chargerLbl = new javax.swing.JLabel();
-        coffeeLbl = new javax.swing.JLabel();
-        coffeeCupLbl = new javax.swing.JLabel();
-        cuttleryLbl = new javax.swing.JLabel();
-        fWashLbl = new javax.swing.JLabel();
-        jeansLbl = new javax.swing.JLabel();
-        jewelryLbl = new javax.swing.JLabel();
-        lightLbl = new javax.swing.JLabel();
-        nBooksLbl = new javax.swing.JLabel();
-        shirtLbl = new javax.swing.JLabel();
-        sBagLbl = new javax.swing.JLabel();
-        trashBagsLbl = new javax.swing.JLabel();
-        cartLbl = new javax.swing.JLabel();
-        bottleTitleLbl = new javax.swing.JLabel();
-        bottleAdd = new javax.swing.JRadioButton();
-        bottleDesLbl = new javax.swing.JLabel();
-        bottlePriceLbl = new javax.swing.JLabel();
-        toothTitlLbl = new javax.swing.JLabel();
-        toothDesTitle = new javax.swing.JLabel();
-        toothDesLbl = new javax.swing.JLabel();
-        toothAdd = new javax.swing.JRadioButton();
-        coffeeTitleLbl = new javax.swing.JLabel();
-        coffeeDes1Lbl = new javax.swing.JLabel();
-        coffeePrice = new javax.swing.JLabel();
-        coffeeAdd = new javax.swing.JRadioButton();
-        coffeeDes2 = new javax.swing.JLabel();
-        cutleryTitleLbl = new javax.swing.JLabel();
-        cutleryDesLbl = new javax.swing.JLabel();
-        cutleryPrice = new javax.swing.JLabel();
-        cutleryAdd = new javax.swing.JRadioButton();
-        cutleryTitleLbl1 = new javax.swing.JLabel();
-        jeansDes1Lbl = new javax.swing.JLabel();
-        jeansPrice = new javax.swing.JLabel();
-        jeansAdd = new javax.swing.JRadioButton();
-        jeansDes2Lbl = new javax.swing.JLabel();
-        lightTitleLbl = new javax.swing.JLabel();
-        lightDes1Lbl = new javax.swing.JLabel();
-        lightDes2Lbl = new javax.swing.JLabel();
-        lightPrice = new javax.swing.JLabel();
-        lightAdd = new javax.swing.JRadioButton();
-        sBagTitlLbl = new javax.swing.JLabel();
-        sBagDes1Lbl = new javax.swing.JLabel();
-        sBagDes2Lbl = new javax.swing.JLabel();
-        sBagPrice = new javax.swing.JLabel();
-        sBagAdd = new javax.swing.JRadioButton();
-        noteBookTitleLbl = new javax.swing.JLabel();
-        noteBookDes1Lbl = new javax.swing.JLabel();
-        noteBookDes2Lbl = new javax.swing.JLabel();
-        noteBookPrice = new javax.swing.JLabel();
-        noteBookAdd = new javax.swing.JRadioButton();
-        fWashTitleLbl = new javax.swing.JLabel();
-        fWashDes1Lbl = new javax.swing.JLabel();
-        fWashDes2Lbl = new javax.swing.JLabel();
-        fWashPrice = new javax.swing.JLabel();
-        fWashAdd = new javax.swing.JRadioButton();
-        jewelryTitleLbl = new javax.swing.JLabel();
-        jewelryDes1Lbl = new javax.swing.JLabel();
-        jewelryDes2Lbl = new javax.swing.JLabel();
-        jewelryPrice = new javax.swing.JLabel();
-        jewelryAdd = new javax.swing.JRadioButton();
-        cCupTitleLbl = new javax.swing.JLabel();
-        cCupDes1Lbl = new javax.swing.JLabel();
-        cCupDes2Lbl = new javax.swing.JLabel();
-        cCupPrice = new javax.swing.JLabel();
-        cCupAdd = new javax.swing.JRadioButton();
-        trashBagsTitleLbl = new javax.swing.JLabel();
-        cCupDes1Lbl1 = new javax.swing.JLabel();
-        trashBagsPrice = new javax.swing.JLabel();
-        trashBagsAdd = new javax.swing.JRadioButton();
-        chargerTitleLbl = new javax.swing.JLabel();
-        chargerDes1Lbl = new javax.swing.JLabel();
-        chargerPrice = new javax.swing.JLabel();
-        chargerAdd = new javax.swing.JRadioButton();
-        chargerDes2lbl = new javax.swing.JLabel();
-        binAdd = new javax.swing.JRadioButton();
-        binTitleLbl = new javax.swing.JLabel();
-        binDes1Lbl = new javax.swing.JLabel();
-        binDes2Lbl = new javax.swing.JLabel();
-        binPrice = new javax.swing.JLabel();
-        shirtTitleLbl = new javax.swing.JLabel();
-        shirtDes1Lbl = new javax.swing.JLabel();
-        shirtDes2Lbl = new javax.swing.JLabel();
-        shirtPrice = new javax.swing.JLabel();
-        shirtAdd = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        wBottleLbl1 = new javax.swing.JLabel();
+        binLbl1 = new javax.swing.JLabel();
+        tBrushLbl1 = new javax.swing.JLabel();
+        chargerLbl1 = new javax.swing.JLabel();
+        coffeeLbl1 = new javax.swing.JLabel();
+        coffeeCupLbl1 = new javax.swing.JLabel();
+        cuttleryLbl1 = new javax.swing.JLabel();
+        fWashLbl1 = new javax.swing.JLabel();
+        jeansLbl1 = new javax.swing.JLabel();
+        jewelryLbl1 = new javax.swing.JLabel();
+        lightLbl1 = new javax.swing.JLabel();
+        nBooksLbl1 = new javax.swing.JLabel();
+        shirtLbl1 = new javax.swing.JLabel();
+        sBagLbl1 = new javax.swing.JLabel();
+        trashBagsLbl1 = new javax.swing.JLabel();
+        bottleTitleLbl1 = new javax.swing.JLabel();
+        bottleDesLbl1 = new javax.swing.JLabel();
+        bottlePriceLbl1 = new javax.swing.JLabel();
+        toothTitlLbl1 = new javax.swing.JLabel();
+        toothDesTitle1 = new javax.swing.JLabel();
+        toothDesLbl1 = new javax.swing.JLabel();
+        coffeeTitleLbl1 = new javax.swing.JLabel();
+        coffeeDes1Lbl1 = new javax.swing.JLabel();
+        coffeePrice1 = new javax.swing.JLabel();
+        coffeeDes3 = new javax.swing.JLabel();
+        cutleryTitleLbl2 = new javax.swing.JLabel();
+        cutleryDesLbl1 = new javax.swing.JLabel();
+        cutleryPrice1 = new javax.swing.JLabel();
+        cutleryTitleLbl3 = new javax.swing.JLabel();
+        jeansDes1Lbl1 = new javax.swing.JLabel();
+        jeansPrice1 = new javax.swing.JLabel();
+        jeansDes2Lbl1 = new javax.swing.JLabel();
+        lightTitleLbl1 = new javax.swing.JLabel();
+        lightDes1Lbl1 = new javax.swing.JLabel();
+        lightDes2Lbl1 = new javax.swing.JLabel();
+        lightPrice1 = new javax.swing.JLabel();
+        sBagTitlLbl1 = new javax.swing.JLabel();
+        sBagDes1Lbl1 = new javax.swing.JLabel();
+        sBagDes2Lbl1 = new javax.swing.JLabel();
+        sBagPrice1 = new javax.swing.JLabel();
+        noteBookTitleLbl1 = new javax.swing.JLabel();
+        noteBookDes1Lbl1 = new javax.swing.JLabel();
+        noteBookDes2Lbl1 = new javax.swing.JLabel();
+        noteBookPrice1 = new javax.swing.JLabel();
+        fWashTitleLbl1 = new javax.swing.JLabel();
+        fWashDes1Lbl1 = new javax.swing.JLabel();
+        fWashDes2Lbl1 = new javax.swing.JLabel();
+        fWashPrice1 = new javax.swing.JLabel();
+        jewelryTitleLbl1 = new javax.swing.JLabel();
+        jewelryDes1Lbl1 = new javax.swing.JLabel();
+        jewelryDes2Lbl1 = new javax.swing.JLabel();
+        jewelryPrice1 = new javax.swing.JLabel();
+        cCupTitleLbl1 = new javax.swing.JLabel();
+        cCupDes1Lbl2 = new javax.swing.JLabel();
+        cCupDes2Lbl1 = new javax.swing.JLabel();
+        cCupPrice1 = new javax.swing.JLabel();
+        trashBagsTitleLbl1 = new javax.swing.JLabel();
+        cCupDes1Lbl3 = new javax.swing.JLabel();
+        trashBagsPrice1 = new javax.swing.JLabel();
+        chargerTitleLbl1 = new javax.swing.JLabel();
+        chargerDes1Lbl1 = new javax.swing.JLabel();
+        chargerPrice1 = new javax.swing.JLabel();
+        chargerDes2lbl1 = new javax.swing.JLabel();
+        binTitleLbl1 = new javax.swing.JLabel();
+        binDes1Lbl1 = new javax.swing.JLabel();
+        binDes2Lbl1 = new javax.swing.JLabel();
+        binPrice1 = new javax.swing.JLabel();
+        shirtTitleLbl1 = new javax.swing.JLabel();
+        shirtDes1Lbl1 = new javax.swing.JLabel();
+        shirtDes2Lbl1 = new javax.swing.JLabel();
+        shirtPrice1 = new javax.swing.JLabel();
+        wBottleBtn = new javax.swing.JButton();
+        wBottleRemoveBtn = new javax.swing.JButton();
+        tBrushAddBtn = new javax.swing.JButton();
+        tBrushRemoveBtn = new javax.swing.JButton();
+        coffeeAddBtn = new javax.swing.JButton();
+        coffeeRemoveBtn = new javax.swing.JButton();
+        cutleryAddBtn = new javax.swing.JButton();
+        cutleryRemoveBtn = new javax.swing.JButton();
+        jeansAddBtn = new javax.swing.JButton();
+        jeansRemoveBtn = new javax.swing.JButton();
+        lightAddBtn = new javax.swing.JButton();
+        lightRemoveBtn = new javax.swing.JButton();
+        sBagAddBtn = new javax.swing.JButton();
+        sBagRemoveBtn = new javax.swing.JButton();
+        nBooksAddBtn = new javax.swing.JButton();
+        nBooksRemoveBtn = new javax.swing.JButton();
+        fWashAddBtn = new javax.swing.JButton();
+        fWashRemoveBtn = new javax.swing.JButton();
+        jewelryAddBtn = new javax.swing.JButton();
+        jewelryRemoveBtn = new javax.swing.JButton();
+        cCupsAddBtn = new javax.swing.JButton();
+        cCupsRemoveBtn = new javax.swing.JButton();
+        tBagsAddBtn = new javax.swing.JButton();
+        tBagsRemoveBtn = new javax.swing.JButton();
+        chargerAddBtn = new javax.swing.JButton();
+        chargerRemoveBtn = new javax.swing.JButton();
+        binAddBtn = new javax.swing.JButton();
+        binRemoveBtn = new javax.swing.JButton();
+        shirtAddBtn = new javax.swing.JButton();
+        shirtRemoveBtn = new javax.swing.JButton();
+        completeOrderBtn = new javax.swing.JToggleButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         quizPnl = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        easyBtn = new javax.swing.JButton();
+        mediumBtn = new javax.swing.JButton();
+        hardBtn = new javax.swing.JButton();
+        extremeBtn = new javax.swing.JButton();
+        option1Btn = new javax.swing.JRadioButton();
+        option2Btn = new javax.swing.JRadioButton();
+        option3Btn = new javax.swing.JRadioButton();
+        option4Btn = new javax.swing.JRadioButton();
+        QuestionLbl = new javax.swing.JLabel();
+        SubmitBtn = new javax.swing.JButton();
+        answerLbl = new javax.swing.JLabel();
+        FactLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 0));
@@ -261,17 +439,26 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                 .addComponent(marketplaceButtonPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(quizButtonPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         homePnl.setBackground(new java.awt.Color(55, 162, 179));
+        homePnl.setMaximumSize(new java.awt.Dimension(806, 474));
+        homePnl.setMinimumSize(new java.awt.Dimension(806, 474));
 
+        homeTitleLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        homeTitleLbl.setForeground(new java.awt.Color(255, 204, 153));
         homeTitleLbl.setText("CO2 Emissions Calculator");
 
         carBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/car.png"))); // NOI18N
+        carBtn.setToolTipText("Car");
         carBtn.setBorder(null);
-        carBtn.setBorderPainted(false);
         carBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        carBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                carBtnStateChanged(evt);
+            }
+        });
         carBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 carBtnMouseClicked(evt);
@@ -284,14 +471,31 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         });
 
         busBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/bus.png"))); // NOI18N
+        busBtn.setToolTipText("Bus");
         busBtn.setBorder(null);
         busBtn.setBorderPainted(false);
         busBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        busBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                busBtnStateChanged(evt);
+            }
+        });
+        busBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busBtnActionPerformed(evt);
+            }
+        });
 
         metroBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/metro.png"))); // NOI18N
+        metroBtn.setToolTipText("Metro/Subway");
         metroBtn.setBorder(null);
         metroBtn.setBorderPainted(false);
         metroBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        metroBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                metroBtnStateChanged(evt);
+            }
+        });
         metroBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 metroBtnActionPerformed(evt);
@@ -300,19 +504,47 @@ public class TransitTraceGUI extends javax.swing.JFrame {
 
         motorbikeBtn.setForeground(new java.awt.Color(255, 255, 255));
         motorbikeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/motorbike.png"))); // NOI18N
+        motorbikeBtn.setToolTipText("Motorbike");
         motorbikeBtn.setBorder(null);
         motorbikeBtn.setBorderPainted(false);
         motorbikeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        motorbikeBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                motorbikeBtnStateChanged(evt);
+            }
+        });
+        motorbikeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motorbikeBtnActionPerformed(evt);
+            }
+        });
 
         tramBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/tram.png"))); // NOI18N
+        tramBtn.setToolTipText("Tram/Light Rail");
         tramBtn.setBorder(null);
         tramBtn.setBorderPainted(false);
         tramBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tramBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tramBtnStateChanged(evt);
+            }
+        });
+        tramBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tramBtnActionPerformed(evt);
+            }
+        });
 
         trainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/train.png"))); // NOI18N
+        trainBtn.setToolTipText("Train");
         trainBtn.setBorder(null);
         trainBtn.setBorderPainted(false);
         trainBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        trainBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                trainBtnStateChanged(evt);
+            }
+        });
         trainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trainBtnActionPerformed(evt);
@@ -320,17 +552,34 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         });
 
         eMobilityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/eMobility.png"))); // NOI18N
+        eMobilityBtn.setToolTipText("eMobility");
         eMobilityBtn.setBorder(null);
         eMobilityBtn.setBorderPainted(false);
         eMobilityBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        eMobilityBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                eMobilityBtnStateChanged(evt);
+            }
+        });
+        eMobilityBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eMobilityBtnMouseClicked(evt);
+            }
+        });
         eMobilityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eMobilityBtnActionPerformed(evt);
             }
         });
 
-        instructionLbl.setText("Choose your commute modes and the distance travelled in it");
+        instructionLbl.setBackground(new java.awt.Color(255, 204, 153));
+        instructionLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        instructionLbl.setForeground(new java.awt.Color(255, 204, 204));
+        instructionLbl.setText("1. Choose your commute mode/modes");
 
+        nextBtn.setBackground(new java.awt.Color(0, 102, 102));
+        nextBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nextBtn.setForeground(new java.awt.Color(153, 255, 153));
         nextBtn.setText("Next");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,88 +587,90 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         });
 
+        carSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        carSpnr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         carSpnr.setEnabled(false);
 
+        busSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         busSpnr.setEnabled(false);
 
+        metroSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         metroSpnr.setEnabled(false);
 
+        eMobilitySpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         eMobilitySpnr.setEnabled(false);
 
+        motorbikeSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         motorbikeSpnr.setEnabled(false);
 
+        tramSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         tramSpnr.setEnabled(false);
 
+        trainSpnr.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
         trainSpnr.setEnabled(false);
 
-        jLabel1.setText("The total CO2 Emission for your commute is:");
+        instructionLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        instructionLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        instructionLbl1.setText("2. Choose the distance travelled in your mode of commute");
 
         javax.swing.GroupLayout homePnlLayout = new javax.swing.GroupLayout(homePnl);
         homePnl.setLayout(homePnlLayout);
         homePnlLayout.setHorizontalGroup(
             homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePnlLayout.createSequentialGroup()
+                .addGap(0, 272, Short.MAX_VALUE)
+                .addComponent(homeTitleLbl)
+                .addGap(231, 231, 231))
             .addGroup(homePnlLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(instructionLbl)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(homePnlLayout.createSequentialGroup()
-                .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(homePnlLayout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(homeTitleLbl))
-                    .addGroup(homePnlLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(homePnlLayout.createSequentialGroup()
-                                    .addComponent(eMobilityBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(eMobilitySpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(homePnlLayout.createSequentialGroup()
-                                    .addComponent(busBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(busSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tramBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(homePnlLayout.createSequentialGroup()
-                                    .addComponent(metroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(metroSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(trainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(homePnlLayout.createSequentialGroup()
-                                    .addComponent(carBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(carSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(101, 101, 101)
-                                    .addComponent(motorbikeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                .addGap(74, 74, 74)
                 .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(145, 145, 145))
+                    .addComponent(instructionLbl1)
+                    .addComponent(instructionLbl)
                     .addGroup(homePnlLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(homePnlLayout.createSequentialGroup()
-                                .addComponent(trainSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(busBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(busSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addComponent(tramBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(homePnlLayout.createSequentialGroup()
+                                .addComponent(metroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(metroSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(trainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(homePnlLayout.createSequentialGroup()
+                                .addComponent(eMobilityBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(eMobilitySpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(homePnlLayout.createSequentialGroup()
-                                .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(motorbikeSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tramSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(carBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(carSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(motorbikeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tramSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(motorbikeSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(trainSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
         );
         homePnlLayout.setVerticalGroup(
             homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(homeTitleLbl)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(instructionLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(instructionLbl1)
                 .addGap(18, 18, 18)
                 .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(homePnlLayout.createSequentialGroup()
@@ -430,11 +681,11 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(carSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(homePnlLayout.createSequentialGroup()
                                 .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(busBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tramBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(tramBtn))
                                 .addGap(18, 18, 18)
                                 .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(metroBtn)
@@ -442,747 +693,1349 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                             .addGroup(homePnlLayout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(busSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(metroSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(metroSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)))
+                        .addGap(14, 14, 14)
                         .addGroup(homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eMobilityBtn)
                             .addGroup(homePnlLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(eMobilityBtn))
-                            .addGroup(homePnlLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
+                                .addGap(12, 12, 12)
                                 .addComponent(eMobilitySpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(homePnlLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(18, 18, 18)
                         .addComponent(motorbikeSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addGap(51, 51, 51)
                         .addComponent(tramSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(trainSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        step2homePnl.setBackground(new java.awt.Color(55, 162, 179));
+        step2homePnl.setMaximumSize(new java.awt.Dimension(806, 474));
+        step2homePnl.setMinimumSize(new java.awt.Dimension(806, 474));
+        step2homePnl.setPreferredSize(new java.awt.Dimension(806, 474));
+        step2homePnl.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                step2homePnlComponentShown(evt);
+            }
+        });
+
+        step2TitleLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        step2TitleLbl.setForeground(new java.awt.Color(255, 204, 153));
+        step2TitleLbl.setText("One Last Step, before we can proceed");
+
+        step2CarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/car.png"))); // NOI18N
+        step2CarBtn.setToolTipText("Car");
+        step2CarBtn.setBorder(null);
+        step2CarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        step2CarBtn.setEnabled(false);
+        step2CarBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                step2CarBtnStateChanged(evt);
+            }
+        });
+        step2CarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                step2CarBtnMouseClicked(evt);
+            }
+        });
+        step2CarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step2CarBtnActionPerformed(evt);
+            }
+        });
+
+        step2MetroBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/metro.png"))); // NOI18N
+        step2MetroBtn.setToolTipText("Train");
+        step2MetroBtn.setBorder(null);
+        step2MetroBtn.setBorderPainted(false);
+        step2MetroBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        step2MetroBtn.setEnabled(false);
+        step2MetroBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                step2MetroBtnStateChanged(evt);
+            }
+        });
+        step2MetroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step2MetroBtnActionPerformed(evt);
+            }
+        });
+
+        step2TrainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transittrace/images/train.png"))); // NOI18N
+        step2TrainBtn.setToolTipText("Metro/Subway");
+        step2TrainBtn.setBorder(null);
+        step2TrainBtn.setBorderPainted(false);
+        step2TrainBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        step2TrainBtn.setEnabled(false);
+        step2TrainBtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                step2TrainBtnStateChanged(evt);
+            }
+        });
+        step2TrainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step2TrainBtnActionPerformed(evt);
+            }
+        });
+
+        step2UserInfoLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step2UserInfoLbl.setForeground(new java.awt.Color(255, 204, 204));
+        step2UserInfoLbl.setText("Please choose the type of your vehicle");
+
+        step2NextBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2NextBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        step2NextBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2NextBtn.setText("Next");
+        step2NextBtn.setPreferredSize(new java.awt.Dimension(85, 39));
+        step2NextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step2NextBtnActionPerformed(evt);
+            }
+        });
+
+        step2CarElectricBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2CarType.add(step2CarElectricBtn);
+        step2CarElectricBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2CarElectricBtn.setText("Electric");
+        step2CarElectricBtn.setEnabled(false);
+
+        step2CarHybridBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2CarType.add(step2CarHybridBtn);
+        step2CarHybridBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2CarHybridBtn.setText("Hybrid");
+        step2CarHybridBtn.setEnabled(false);
+
+        step2CarPetrolBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2CarType.add(step2CarPetrolBtn);
+        step2CarPetrolBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2CarPetrolBtn.setText("Petrol");
+        step2CarPetrolBtn.setEnabled(false);
+
+        step2CarDieselBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2CarType.add(step2CarDieselBtn);
+        step2CarDieselBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2CarDieselBtn.setText("Diesel");
+        step2CarDieselBtn.setEnabled(false);
+
+        step2MetroElectricBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2MetroType.add(step2MetroElectricBtn);
+        step2MetroElectricBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2MetroElectricBtn.setText("Electric");
+        step2MetroElectricBtn.setEnabled(false);
+
+        step2MetroDieselBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2MetroType.add(step2MetroDieselBtn);
+        step2MetroDieselBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2MetroDieselBtn.setText("Diesel");
+        step2MetroDieselBtn.setEnabled(false);
+
+        step2TrainElectricBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2TrainType.add(step2TrainElectricBtn);
+        step2TrainElectricBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2TrainElectricBtn.setText("Electric");
+        step2TrainElectricBtn.setEnabled(false);
+
+        step2TrainDieselBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step2TrainType.add(step2TrainDieselBtn);
+        step2TrainDieselBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step2TrainDieselBtn.setText("Diesel");
+        step2TrainDieselBtn.setEnabled(false);
+
+        javax.swing.GroupLayout step2homePnlLayout = new javax.swing.GroupLayout(step2homePnl);
+        step2homePnl.setLayout(step2homePnlLayout);
+        step2homePnlLayout.setHorizontalGroup(
+            step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step2homePnlLayout.createSequentialGroup()
+                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step2UserInfoLbl)
+                            .addGroup(step2homePnlLayout.createSequentialGroup()
+                                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                                        .addComponent(step2TrainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(step2TrainElectricBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, step2homePnlLayout.createSequentialGroup()
+                                        .addComponent(step2MetroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(step2MetroElectricBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, step2homePnlLayout.createSequentialGroup()
+                                        .addComponent(step2CarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(56, 56, 56)
+                                        .addComponent(step2CarElectricBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(step2MetroDieselBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(step2TrainDieselBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                                        .addComponent(step2CarHybridBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(step2CarPetrolBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(step2CarDieselBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(step2TitleLbl)))
+                .addContainerGap(168, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, step2homePnlLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(step2NextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
+        );
+        step2homePnlLayout.setVerticalGroup(
+            step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step2homePnlLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(step2TitleLbl)
+                .addGap(33, 33, 33)
+                .addComponent(step2UserInfoLbl)
+                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(step2CarBtn))
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(step2CarElectricBtn)
+                            .addComponent(step2CarHybridBtn)
+                            .addComponent(step2CarPetrolBtn)
+                            .addComponent(step2CarDieselBtn))))
+                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(step2MetroBtn))
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(step2MetroElectricBtn)
+                            .addComponent(step2MetroDieselBtn))))
+                .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(step2TrainBtn))
+                    .addGroup(step2homePnlLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(step2homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(step2TrainElectricBtn)
+                            .addComponent(step2TrainDieselBtn))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(step2NextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
+        );
+
+        step3homePnl.setBackground(new java.awt.Color(55, 162, 179));
+        step3homePnl.setMaximumSize(new java.awt.Dimension(806, 474));
+        step3homePnl.setMinimumSize(new java.awt.Dimension(806, 474));
+        step3homePnl.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                step3homePnlComponentShown(evt);
+            }
+        });
+
+        step3TitleLbl.setBackground(new java.awt.Color(255, 255, 255));
+        step3TitleLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        step3TitleLbl.setForeground(new java.awt.Color(255, 204, 153));
+        step3TitleLbl.setText("CO2 Emissions for your commute is");
+
+        step3TitleResultLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        step3TitleResultLbl.setForeground(new java.awt.Color(153, 255, 153));
+        step3TitleResultLbl.setText("0g");
+        step3TitleResultLbl.setToolTipText("");
+
+        step3VehicleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl1.setText("Car:");
+
+        step3VehicleLbl2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl2.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl2.setText("Car:");
+
+        step3VehicleLbl3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl3.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl3.setText("Car:");
+
+        step3VehicleLbl4.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl4.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl4.setText("Car:");
+
+        step3VehicleLbl5.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl5.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl5.setText("Car:");
+
+        step3VehicleLbl6.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl6.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl6.setText("Car:");
+
+        step3VehicleLbl7.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3VehicleLbl7.setForeground(new java.awt.Color(255, 204, 204));
+        step3VehicleLbl7.setText("Car:");
+
+        step3EmissionLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl1.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl1.setText("0g");
+
+        step3EmissionLbl5.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl5.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl5.setText("0g");
+
+        step3EmissionLbl3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl3.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl3.setText("0g");
+
+        step3EmissionLbl2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl2.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl2.setText("0g");
+
+        step3EmissionLbl6.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl6.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl6.setText("0g");
+
+        step3EmissionLbl7.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl7.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl7.setText("0g");
+
+        step3EmissionLbl4.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        step3EmissionLbl4.setForeground(new java.awt.Color(153, 255, 153));
+        step3EmissionLbl4.setText("0g");
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel4.setText("Some Tips to reduce your Carbon footprint");
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 3, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel5.setText("1. Prioritise usage of Public Transport wherever possible");
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 3, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel6.setText("2. For shorter distances, choose active mobility options like walking and cycling");
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 3, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel7.setText("3. Opt for carpooling when public transport isn't feasible");
+
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT", 3, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel8.setText("4. Choose electric or hybrid vehicles for your travel");
+
+        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 3, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel9.setText("5. Switch to more sustainable products, you can find a few in our marketplace");
+
+        step3MarketplaceBtn.setBackground(new java.awt.Color(0, 102, 102));
+        step3MarketplaceBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        step3MarketplaceBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step3MarketplaceBtn.setText("Check out our Marketplace");
+        step3MarketplaceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step3MarketplaceBtnActionPerformed(evt);
+            }
+        });
+
+        step3HomeBtn.setBackground(new java.awt.Color(0, 153, 153));
+        step3HomeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        step3HomeBtn.setForeground(new java.awt.Color(153, 255, 153));
+        step3HomeBtn.setText("Return Home");
+        step3HomeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                step3HomeBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout step3homePnlLayout = new javax.swing.GroupLayout(step3homePnl);
+        step3homePnl.setLayout(step3homePnlLayout);
+        step3homePnlLayout.setHorizontalGroup(
+            step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step3homePnlLayout.createSequentialGroup()
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(step3TitleLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(step3TitleResultLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(step3VehicleLbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                                        .addComponent(step3VehicleLbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(step3EmissionLbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                                        .addComponent(step3MarketplaceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(step3homePnlLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(trainSpnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56))
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addComponent(step3VehicleLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addComponent(step3VehicleLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addComponent(step3VehicleLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addComponent(step3VehicleLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(step3homePnlLayout.createSequentialGroup()
+                                .addComponent(step3VehicleLbl5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(step3EmissionLbl5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))))
+                .addContainerGap())
+        );
+        step3homePnlLayout.setVerticalGroup(
+            step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(step3homePnlLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(step3TitleLbl)
+                    .addComponent(step3TitleResultLbl))
+                .addGap(32, 32, 32)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step3VehicleLbl1)
+                            .addComponent(step3EmissionLbl1))
+                        .addGap(6, 6, 6)
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step3VehicleLbl2)
+                            .addComponent(step3EmissionLbl2))
+                        .addGap(6, 6, 6)
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step3VehicleLbl3)
+                            .addComponent(step3EmissionLbl3))
+                        .addGap(6, 6, 6)
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step3VehicleLbl4)
+                            .addComponent(step3EmissionLbl4))
+                        .addGap(6, 6, 6)
+                        .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(step3VehicleLbl5)
+                            .addComponent(step3EmissionLbl5)))
+                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)))
+                .addGap(6, 6, 6)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(step3VehicleLbl6)
+                    .addComponent(step3EmissionLbl6))
+                .addGap(6, 6, 6)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(step3VehicleLbl7)
+                    .addComponent(step3EmissionLbl7))
+                .addGap(60, 60, 60)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(step3MarketplaceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 74, Short.MAX_VALUE))
         );
 
         marketplacePnl.setBackground(new java.awt.Color(55, 162, 179));
 
-        jScrollPane1.setBackground(new java.awt.Color(55, 162, 179));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setBackground(new java.awt.Color(55, 162, 179));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jPanel1.setBackground(new java.awt.Color(55, 162, 179));
+        jPanel2.setBackground(new java.awt.Color(55, 162, 179));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        wBottleLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bottle (1).png"))); // NOI18N
+        wBottleLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bottle (1).png"))); // NOI18N
+        jPanel2.add(wBottleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 35, 200, 200));
 
-        binLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bins (1).png"))); // NOI18N
+        binLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bins (1).png"))); // NOI18N
+        jPanel2.add(binLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2738, 200, 200));
 
-        tBrushLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tooth (1).png"))); // NOI18N
+        tBrushLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tooth (1).png"))); // NOI18N
+        jPanel2.add(tBrushLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 241, 200, 200));
 
-        chargerLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charger (1).png"))); // NOI18N
+        chargerLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charger (1).png"))); // NOI18N
+        jPanel2.add(chargerLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2532, 200, 200));
 
-        coffeeLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/coffee.png"))); // NOI18N
+        coffeeLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/coffee.png"))); // NOI18N
+        jPanel2.add(coffeeLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 441, 200, 200));
 
-        coffeeCupLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/coffeecup.png"))); // NOI18N
+        coffeeCupLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/coffeecup.png"))); // NOI18N
+        jPanel2.add(coffeeCupLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2120, 200, 200));
 
-        cuttleryLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cutlery.png"))); // NOI18N
+        cuttleryLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cutlery.png"))); // NOI18N
+        jPanel2.add(cuttleryLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 647, 192, 200));
 
-        fWashLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facewash (1).png"))); // NOI18N
+        fWashLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facewash (1).png"))); // NOI18N
+        jPanel2.add(fWashLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1702, 200, 200));
 
-        jeansLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jeans (1).png"))); // NOI18N
+        jeansLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jeans (1).png"))); // NOI18N
+        jPanel2.add(jeansLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 859, 200, 200));
 
-        jewelryLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jewlery (1).png"))); // NOI18N
+        jewelryLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jewlery (1).png"))); // NOI18N
+        jPanel2.add(jewelryLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1914, 200, 200));
 
-        lightLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/light (1).png"))); // NOI18N
+        lightLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/light (1).png"))); // NOI18N
+        jPanel2.add(lightLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1059, 200, 200));
 
-        nBooksLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notebooks (1).png"))); // NOI18N
+        nBooksLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notebooks (1).png"))); // NOI18N
+        jPanel2.add(nBooksLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1496, 200, 200));
 
-        shirtLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shirt (1).png"))); // NOI18N
+        shirtLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shirt (1).png"))); // NOI18N
+        jPanel2.add(shirtLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2944, 200, 200));
 
-        sBagLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shoppingbag (1).png"))); // NOI18N
+        sBagLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shoppingbag (1).png"))); // NOI18N
+        jPanel2.add(sBagLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 1290, 200, 200));
 
-        trashBagsLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trashbags.png"))); // NOI18N
+        trashBagsLbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trashbags.png"))); // NOI18N
+        jPanel2.add(trashBagsLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2326, 200, 200));
 
-        cartLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vector-shopping-cart-icon.png"))); // NOI18N
+        bottleTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        bottleTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        bottleTitleLbl1.setText("Reusable Water Bottle");
+        jPanel2.add(bottleTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 114, 364, -1));
 
-        bottleTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bottleTitleLbl.setText("Reusable Water Bottle");
+        bottleDesLbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        bottleDesLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        bottleDesLbl1.setText("Reduce single-use plastic waste by using a durable, refillable water bottle.");
+        jPanel2.add(bottleDesLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 147, -1, -1));
 
-        bottleAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        bottleAdd.setText("Add to cart");
-        bottleAdd.addActionListener(new java.awt.event.ActionListener() {
+        bottlePriceLbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        bottlePriceLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        bottlePriceLbl1.setText("Price: 9.99");
+        jPanel2.add(bottlePriceLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 173, 463, -1));
+
+        toothTitlLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        toothTitlLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        toothTitlLbl1.setText("Bamboo Tooth Brush");
+        jPanel2.add(toothTitlLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 327, 364, -1));
+
+        toothDesTitle1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        toothDesTitle1.setForeground(new java.awt.Color(255, 204, 204));
+        toothDesTitle1.setText("An eco-friendly alternative to plastic toothbrushes.");
+        jPanel2.add(toothDesTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 360, -1, -1));
+
+        toothDesLbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        toothDesLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        toothDesLbl1.setText("Price: 4.99");
+        jPanel2.add(toothDesLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 386, 364, -1));
+
+        coffeeTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        coffeeTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        coffeeTitleLbl1.setText("Fair Trade Coffee");
+        jPanel2.add(coffeeTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 497, 364, -1));
+
+        coffeeDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        coffeeDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        coffeeDes1Lbl1.setText("Coffee produced under fair trade conditions, ensuring fair wages and");
+        jPanel2.add(coffeeDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 530, -1, -1));
+
+        coffeePrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        coffeePrice1.setForeground(new java.awt.Color(255, 204, 204));
+        coffeePrice1.setText("Price: 12.99");
+        jPanel2.add(coffeePrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 582, 430, -1));
+
+        coffeeDes3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        coffeeDes3.setForeground(new java.awt.Color(255, 204, 204));
+        coffeeDes3.setText("ethical practices in the supply chain");
+        jPanel2.add(coffeeDes3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 556, 430, -1));
+
+        cutleryTitleLbl2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        cutleryTitleLbl2.setForeground(new java.awt.Color(255, 204, 204));
+        cutleryTitleLbl2.setText("Biodegrandable Cutlery");
+        jPanel2.add(cutleryTitleLbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 689, 364, -1));
+
+        cutleryDesLbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cutleryDesLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        cutleryDesLbl1.setText("An eco-alternative to plastic cutlery.");
+        jPanel2.add(cutleryDesLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 722, -1, -1));
+
+        cutleryPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cutleryPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        cutleryPrice1.setText("Price: 3.99");
+        jPanel2.add(cutleryPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 748, 414, -1));
+
+        cutleryTitleLbl3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        cutleryTitleLbl3.setForeground(new java.awt.Color(255, 204, 204));
+        cutleryTitleLbl3.setText("Orangic Cotton Jeans");
+        jPanel2.add(cutleryTitleLbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 895, 364, -1));
+
+        jeansDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jeansDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        jeansDes1Lbl1.setText("A pair of jeans made from organic cotton, which is grown without ");
+        jPanel2.add(jeansDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 928, -1, -1));
+
+        jeansPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jeansPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        jeansPrice1.setText("Price: 18.99");
+        jPanel2.add(jeansPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 978, 414, -1));
+
+        jeansDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jeansDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        jeansDes2Lbl1.setText("the use of synthetic pesticides or fertilzers");
+        jPanel2.add(jeansDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 954, 414, -1));
+
+        lightTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        lightTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        lightTitleLbl1.setText("LED Light Bulb");
+        jPanel2.add(lightTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1097, 364, -1));
+
+        lightDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lightDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        lightDes1Lbl1.setText("Energy Efficient light bulbs that las longer and consume less energy");
+        jPanel2.add(lightDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1130, -1, -1));
+
+        lightDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lightDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        lightDes2Lbl1.setText("that traditional bulbs.");
+        jPanel2.add(lightDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1156, 421, -1));
+
+        lightPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        lightPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        lightPrice1.setText("Price: 6.99");
+        jPanel2.add(lightPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1180, 422, -1));
+
+        sBagTitlLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        sBagTitlLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        sBagTitlLbl1.setText("Reusable Shopping Bag");
+        jPanel2.add(sBagTitlLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1326, 364, -1));
+
+        sBagDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        sBagDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        sBagDes1Lbl1.setText("Replace plastic bags with durable, reusable shopping bags made from");
+        jPanel2.add(sBagDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1359, -1, -1));
+
+        sBagDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        sBagDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        sBagDes2Lbl1.setText("materials like cotton or jute");
+        jPanel2.add(sBagDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1385, 421, -1));
+
+        sBagPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        sBagPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        sBagPrice1.setText("Price: 2.49");
+        jPanel2.add(sBagPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1409, 438, -1));
+
+        noteBookTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        noteBookTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        noteBookTitleLbl1.setText("Sustainable Notebooks");
+        jPanel2.add(noteBookTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1552, 364, -1));
+
+        noteBookDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        noteBookDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        noteBookDes1Lbl1.setText("Notebooks made nfrom recycled or sustainably sourced paper, often");
+        jPanel2.add(noteBookDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1585, -1, -1));
+
+        noteBookDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        noteBookDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        noteBookDes2Lbl1.setText("with eco-friendly covers.");
+        jPanel2.add(noteBookDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1611, 421, -1));
+
+        noteBookPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        noteBookPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        noteBookPrice1.setText("Price: 5.99");
+        jPanel2.add(noteBookPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1635, 426, -1));
+
+        fWashTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        fWashTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        fWashTitleLbl1.setText("Organic & Natural Face Wash");
+        jPanel2.add(fWashTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1732, 364, -1));
+
+        fWashDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        fWashDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        fWashDes1Lbl1.setText("A face wash made from organic and natural ingredients, minimizing the");
+        jPanel2.add(fWashDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1765, -1, -1));
+
+        fWashDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        fWashDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        fWashDes2Lbl1.setText("use of synthetic chemicals");
+        jPanel2.add(fWashDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1791, 421, -1));
+
+        fWashPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        fWashPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        fWashPrice1.setText("Price: 7.99");
+        jPanel2.add(fWashPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1815, 450, -1));
+
+        jewelryTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jewelryTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        jewelryTitleLbl1.setText("Upcycled Jewelry");
+        jPanel2.add(jewelryTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1944, 364, -1));
+
+        jewelryDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jewelryDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        jewelryDes1Lbl1.setText("Jewelry made from repurposed materials, reducing the environmental");
+        jPanel2.add(jewelryDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1977, -1, -1));
+
+        jewelryDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jewelryDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        jewelryDes2Lbl1.setText("impact of mining");
+        jPanel2.add(jewelryDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2003, 421, -1));
+
+        jewelryPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jewelryPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        jewelryPrice1.setText("Price: 19.99");
+        jPanel2.add(jewelryPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2027, 434, -1));
+
+        cCupTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        cCupTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        cCupTitleLbl1.setText("Reusable Coffee Cups");
+        jPanel2.add(cCupTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2148, 364, -1));
+
+        cCupDes1Lbl2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cCupDes1Lbl2.setForeground(new java.awt.Color(255, 204, 204));
+        cCupDes1Lbl2.setText("Bring and use your own coffee cup everywhere to reduce the use of");
+        jPanel2.add(cCupDes1Lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2181, -1, -1));
+
+        cCupDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cCupDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        cCupDes2Lbl1.setText("disposable cups.");
+        jPanel2.add(cCupDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2207, 421, -1));
+
+        cCupPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cCupPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        cCupPrice1.setText("Price: 8.99");
+        jPanel2.add(cCupPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2231, 421, -1));
+
+        trashBagsTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        trashBagsTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        trashBagsTitleLbl1.setText("Biodegradable Trash Bags");
+        jPanel2.add(trashBagsTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2378, 364, -1));
+
+        cCupDes1Lbl3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        cCupDes1Lbl3.setForeground(new java.awt.Color(255, 204, 204));
+        cCupDes1Lbl3.setText("Trash bags that braek down naturally, reducing plastic waste in landfills.");
+        jPanel2.add(cCupDes1Lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2411, -1, -1));
+
+        trashBagsPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        trashBagsPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        trashBagsPrice1.setText("Price: 4.99");
+        jPanel2.add(trashBagsPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2437, 454, -1));
+
+        chargerTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        chargerTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        chargerTitleLbl1.setText("Hybrid Solar Charger");
+        jPanel2.add(chargerTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2566, 364, -1));
+
+        chargerDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        chargerDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        chargerDes1Lbl1.setText("Portable chargers that combine solar and traditional charging methods");
+        jPanel2.add(chargerDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2599, -1, -1));
+
+        chargerPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        chargerPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        chargerPrice1.setText("Price: 29.99");
+        jPanel2.add(chargerPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2651, 446, -1));
+
+        chargerDes2lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        chargerDes2lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        chargerDes2lbl1.setText("for increased efficiency.");
+        jPanel2.add(chargerDes2lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2625, 161, -1));
+
+        binTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        binTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        binTitleLbl1.setText("Compost Bin");
+        jPanel2.add(binTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 2782, 364, -1));
+
+        binDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        binDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        binDes1Lbl1.setText("Containers designed for composting organic waste, yurning it into");
+        jPanel2.add(binDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 2815, -1, -1));
+
+        binDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        binDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        binDes2Lbl1.setText("nutrient-rich compost for gardening.");
+        jPanel2.add(binDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 2841, 240, -1));
+
+        binPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        binPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        binPrice1.setText("Price: 39.99");
+        jPanel2.add(binPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 2867, 414, -1));
+
+        shirtTitleLbl1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        shirtTitleLbl1.setForeground(new java.awt.Color(255, 204, 204));
+        shirtTitleLbl1.setText("Organic Cotton Shirt");
+        jPanel2.add(shirtTitleLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2984, 364, -1));
+
+        shirtDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        shirtDes1Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        shirtDes1Lbl1.setText("A T-shirt made from organic cotton, which is grown without the use");
+        jPanel2.add(shirtDes1Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 3017, -1, -1));
+
+        shirtDes2Lbl1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        shirtDes2Lbl1.setForeground(new java.awt.Color(255, 204, 204));
+        shirtDes2Lbl1.setText("of synthetic pesticides or fertilizers.");
+        jPanel2.add(shirtDes2Lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 3043, 240, -1));
+
+        shirtPrice1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        shirtPrice1.setForeground(new java.awt.Color(255, 204, 204));
+        shirtPrice1.setText("Price: 10.99");
+        jPanel2.add(shirtPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 3069, 422, -1));
+
+        wBottleBtn.setBackground(new java.awt.Color(0, 102, 102));
+        wBottleBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        wBottleBtn.setForeground(new java.awt.Color(153, 255, 153));
+        wBottleBtn.setText("Add to Cart");
+        wBottleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bottleAddActionPerformed(evt);
+                wBottleBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(wBottleBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 199, 150, -1));
 
-        bottleDesLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        bottleDesLbl.setText("Reduce single-use plastic waste by using a durable, refillable water bottle.");
-
-        bottlePriceLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        bottlePriceLbl.setText("Price: 9.99");
-
-        toothTitlLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        toothTitlLbl.setText("Bamboo Tooth Brush");
-
-        toothDesTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        toothDesTitle.setText("An eco-friendly alternative to plastic toothbrushes.");
-
-        toothDesLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        toothDesLbl.setText("Price: 4.99");
-
-        toothAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        toothAdd.setText("Add to cart");
-        toothAdd.addActionListener(new java.awt.event.ActionListener() {
+        wBottleRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        wBottleRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        wBottleRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        wBottleRemoveBtn.setText("Remove from Cart");
+        wBottleRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toothAddActionPerformed(evt);
+                wBottleRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(wBottleRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 199, 150, -1));
 
-        coffeeTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        coffeeTitleLbl.setText("Fair Trade Coffee");
-
-        coffeeDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        coffeeDes1Lbl.setText("Coffee produced under fair trade conditions, ensuring fair wages and");
-
-        coffeePrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        coffeePrice.setText("Price: 12.99");
-
-        coffeeAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        coffeeAdd.setText("Add to cart");
-        coffeeAdd.addActionListener(new java.awt.event.ActionListener() {
+        tBrushAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        tBrushAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tBrushAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        tBrushAddBtn.setText("Add to Cart");
+        tBrushAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coffeeAddActionPerformed(evt);
+                tBrushAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(tBrushAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 418, 150, -1));
 
-        coffeeDes2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        coffeeDes2.setText("ethical practices in the supply chain");
-
-        cutleryTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cutleryTitleLbl.setText("Biodegrandable Cutlery");
-
-        cutleryDesLbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cutleryDesLbl.setText("An eco-alternative to plastic cutlery.");
-
-        cutleryPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cutleryPrice.setText("Price: 3.99");
-
-        cutleryAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cutleryAdd.setText("Add to cart");
-        cutleryAdd.addActionListener(new java.awt.event.ActionListener() {
+        tBrushRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        tBrushRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tBrushRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        tBrushRemoveBtn.setText("Remove from Cart");
+        tBrushRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutleryAddActionPerformed(evt);
+                tBrushRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(tBrushRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 418, 150, -1));
 
-        cutleryTitleLbl1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cutleryTitleLbl1.setText("Orangic Cotton Jeans");
-
-        jeansDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jeansDes1Lbl.setText("A pair of jeans made from organic cotton, which is grown without ");
-
-        jeansPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jeansPrice.setText("Price: 18.99");
-
-        jeansAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jeansAdd.setText("Add to cart");
-        jeansAdd.addActionListener(new java.awt.event.ActionListener() {
+        coffeeAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        coffeeAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        coffeeAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        coffeeAddBtn.setText("Add to Cart");
+        coffeeAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jeansAddActionPerformed(evt);
+                coffeeAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(coffeeAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 614, 150, -1));
 
-        jeansDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jeansDes2Lbl.setText("the use of synthetic pesticides or fertilzers");
-
-        lightTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lightTitleLbl.setText("LED Light Bulb");
-
-        lightDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lightDes1Lbl.setText("Energy Efficient light bulbs that las longer and consume less energy");
-
-        lightDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lightDes2Lbl.setText("that traditional bulbs.");
-
-        lightPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lightPrice.setText("Price: 6.99");
-
-        lightAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lightAdd.setText("Add to cart");
-        lightAdd.addActionListener(new java.awt.event.ActionListener() {
+        coffeeRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        coffeeRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        coffeeRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        coffeeRemoveBtn.setText("Remove from Cart");
+        coffeeRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lightAddActionPerformed(evt);
+                coffeeRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(coffeeRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 614, 150, -1));
 
-        sBagTitlLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        sBagTitlLbl.setText("Reusable Shopping Bag");
-
-        sBagDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sBagDes1Lbl.setText("Replace plastic bags with durable, reusable shopping bags made from");
-
-        sBagDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sBagDes2Lbl.setText("materials like cotton or jute");
-
-        sBagPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sBagPrice.setText("Price: 2.49");
-
-        sBagAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        sBagAdd.setText("Add to cart");
-        sBagAdd.addActionListener(new java.awt.event.ActionListener() {
+        cutleryAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        cutleryAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cutleryAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        cutleryAddBtn.setText("Add to Cart");
+        cutleryAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sBagAddActionPerformed(evt);
+                cutleryAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(cutleryAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 780, 150, -1));
 
-        noteBookTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        noteBookTitleLbl.setText("Sustainable Notebooks");
-
-        noteBookDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        noteBookDes1Lbl.setText("Notebooks made nfrom recycled or sustainably sourced paper, often");
-
-        noteBookDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        noteBookDes2Lbl.setText("with eco-friendly covers.");
-
-        noteBookPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        noteBookPrice.setText("Price: 2.49");
-
-        noteBookAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        noteBookAdd.setText("Add to cart");
-        noteBookAdd.addActionListener(new java.awt.event.ActionListener() {
+        cutleryRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        cutleryRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cutleryRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        cutleryRemoveBtn.setText("Remove from Cart");
+        cutleryRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noteBookAddActionPerformed(evt);
+                cutleryRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(cutleryRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 780, 150, -1));
 
-        fWashTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        fWashTitleLbl.setText("Organic & Natural Face Wash");
-
-        fWashDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fWashDes1Lbl.setText("A face wash made from organic and natural ingredients, minimizing the");
-
-        fWashDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fWashDes2Lbl.setText("use of synthetic chemicals");
-
-        fWashPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fWashPrice.setText("Price: 7.99");
-
-        fWashAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        fWashAdd.setText("Add to cart");
-        fWashAdd.addActionListener(new java.awt.event.ActionListener() {
+        jeansAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        jeansAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jeansAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        jeansAddBtn.setText("Add to Cart");
+        jeansAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fWashAddActionPerformed(evt);
+                jeansAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(jeansAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1010, 150, -1));
 
-        jewelryTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jewelryTitleLbl.setText("Upcycled Jewelry");
-
-        jewelryDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jewelryDes1Lbl.setText("Jewelry made from repurposed materials, reducing the environmental");
-
-        jewelryDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jewelryDes2Lbl.setText("impact of mining");
-
-        jewelryPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jewelryPrice.setText("Price: 19.99");
-
-        jewelryAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jewelryAdd.setText("Add to cart");
-        jewelryAdd.addActionListener(new java.awt.event.ActionListener() {
+        jeansRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        jeansRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jeansRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        jeansRemoveBtn.setText("Remove from Cart");
+        jeansRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jewelryAddActionPerformed(evt);
+                jeansRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(jeansRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 1010, 150, -1));
 
-        cCupTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cCupTitleLbl.setText("Reusable Coffee Cups");
-
-        cCupDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cCupDes1Lbl.setText("Bring and use your own coffee cup everywhere to reduce the use of");
-
-        cCupDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cCupDes2Lbl.setText("disposable cups.");
-
-        cCupPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cCupPrice.setText("Price: 8.99");
-
-        cCupAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cCupAdd.setText("Add to cart");
-        cCupAdd.addActionListener(new java.awt.event.ActionListener() {
+        lightAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        lightAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lightAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        lightAddBtn.setText("Add to Cart");
+        lightAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cCupAddActionPerformed(evt);
+                lightAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(lightAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1212, 150, -1));
 
-        trashBagsTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        trashBagsTitleLbl.setText("Biodegradable Trash Bags");
-
-        cCupDes1Lbl1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cCupDes1Lbl1.setText("Trash bags that braek down naturally, reducing plastic waste in landfills.");
-
-        trashBagsPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        trashBagsPrice.setText("Price: 4.99");
-
-        trashBagsAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        trashBagsAdd.setText("Add to cart");
-        trashBagsAdd.addActionListener(new java.awt.event.ActionListener() {
+        lightRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        lightRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lightRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        lightRemoveBtn.setText("Remove from Cart");
+        lightRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trashBagsAddActionPerformed(evt);
+                lightRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(lightRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 1212, 150, -1));
 
-        chargerTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        chargerTitleLbl.setText("Hybrid Solar Charger");
-
-        chargerDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        chargerDes1Lbl.setText("Portable chargers that combine solar and traditional charging methods");
-
-        chargerPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        chargerPrice.setText("Price: 29.99");
-
-        chargerAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        chargerAdd.setText("Add to cart");
-        chargerAdd.addActionListener(new java.awt.event.ActionListener() {
+        sBagAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        sBagAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sBagAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        sBagAddBtn.setText("Add to Cart");
+        sBagAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chargerAddActionPerformed(evt);
+                sBagAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(sBagAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1441, 150, -1));
 
-        chargerDes2lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        chargerDes2lbl.setText("for increased efficiency.");
-
-        binAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        binAdd.setText("Add to cart");
-        binAdd.addActionListener(new java.awt.event.ActionListener() {
+        sBagRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        sBagRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sBagRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        sBagRemoveBtn.setText("Remove from Cart");
+        sBagRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                binAddActionPerformed(evt);
+                sBagRemoveBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(sBagRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 1441, 150, -1));
 
-        binTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        binTitleLbl.setText("Compost Bin");
-
-        binDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        binDes1Lbl.setText("Containers designed for composting organic waste, yurning it into");
-
-        binDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        binDes2Lbl.setText("nutrient-rich compost for gardening.");
-
-        binPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        binPrice.setText("Price: 39.99");
-
-        shirtTitleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        shirtTitleLbl.setText("Organic Cotton Shirt");
-
-        shirtDes1Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        shirtDes1Lbl.setText("A T-shirt made from organic cotton, which is grown without the use");
-
-        shirtDes2Lbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        shirtDes2Lbl.setText("of synthetic pesticides or fertilizers.");
-
-        shirtPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        shirtPrice.setText("Price: 10.99");
-
-        shirtAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        shirtAdd.setText("Add to cart");
-        shirtAdd.addActionListener(new java.awt.event.ActionListener() {
+        nBooksAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        nBooksAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nBooksAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        nBooksAddBtn.setText("Add to Cart");
+        nBooksAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shirtAddActionPerformed(evt);
+                nBooksAddBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(nBooksAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1667, 150, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(trashBagsLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(jewelryLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(coffeeCupLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jewelryAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jewelryPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jewelryDes1Lbl)
-                                        .addComponent(jewelryTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jewelryDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cCupAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cCupPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cCupDes1Lbl)
-                                        .addComponent(cCupTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cCupDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(trashBagsAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(trashBagsPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cCupDes1Lbl1)
-                                        .addComponent(trashBagsTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(chargerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(chargerAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chargerPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(chargerDes1Lbl)
-                                    .addComponent(chargerTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chargerDes2lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nBooksLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(noteBookAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(noteBookPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(noteBookDes1Lbl)
-                                    .addComponent(noteBookTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(noteBookDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(fWashLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fWashAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fWashPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fWashDes1Lbl)
-                                    .addComponent(fWashTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fWashDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(wBottleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bottleAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cartLbl)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(bottlePriceLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bottleDesLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(bottleTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(toothAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(toothDesLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(toothDesTitle)
-                                        .addComponent(toothTitlLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(coffeeAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(coffeeDes2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(coffeePrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(coffeeDes1Lbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(coffeeTitleLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(sBagLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sBagAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sBagPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sBagDes1Lbl)
-                                    .addComponent(sBagTitlLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sBagDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jeansLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cuttleryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cutleryAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cutleryPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cutleryDesLbl)
-                                    .addComponent(cutleryTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jeansAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jeansPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jeansDes1Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cutleryTitleLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jeansDes2Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lightLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(coffeeLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(tBrushLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lightAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lightPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lightDes1Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lightTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lightDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(binLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(binAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(binPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(binDes1Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(binTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(binDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(shirtLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(shirtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(shirtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(shirtDes1Lbl)
-                            .addComponent(shirtTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(shirtDes2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cartLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bottleTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bottleDesLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bottlePriceLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bottleAdd)
-                        .addGap(103, 103, 103)
-                        .addComponent(toothTitlLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toothDesTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toothDesLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toothAdd))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(wBottleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tBrushLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(coffeeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(coffeeTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(coffeeDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(coffeeDes2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(coffeePrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(coffeeAdd)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cuttleryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(cutleryTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cutleryDesLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cutleryPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cutleryAdd)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jeansLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(cutleryTitleLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jeansDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jeansDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(jeansPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jeansAdd)))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lightTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lightDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lightDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(lightPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lightAdd))
-                    .addComponent(lightLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(sBagLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sBagTitlLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sBagDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sBagDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(sBagPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sBagAdd)
-                        .addGap(36, 36, 36)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nBooksLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(noteBookTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noteBookDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noteBookDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(noteBookPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noteBookAdd)
-                        .addGap(16, 16, 16)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fWashLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(fWashTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fWashDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fWashDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(fWashPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fWashAdd)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jewelryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jewelryTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jewelryDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jewelryDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(jewelryPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jewelryAdd)
-                        .addGap(42, 42, 42)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(coffeeCupLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cCupTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cCupDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cCupDes2Lbl)
-                        .addGap(4, 4, 4)
-                        .addComponent(cCupPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cCupAdd)
-                        .addGap(44, 44, 44)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(trashBagsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(trashBagsTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cCupDes1Lbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(trashBagsPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(trashBagsAdd)
-                        .addGap(44, 44, 44)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chargerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(chargerTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chargerDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chargerDes2lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chargerPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chargerAdd)
-                        .addGap(36, 36, 36)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(binLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(binTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(binDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(binDes2Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(binPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(binAdd)
-                        .addGap(26, 26, 26)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(shirtLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(shirtTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shirtDes1Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shirtDes2Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shirtPrice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(shirtAdd))))
-        );
+        nBooksRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        nBooksRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nBooksRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        nBooksRemoveBtn.setText("Remove from Cart");
+        nBooksRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nBooksRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(nBooksRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 1667, 150, -1));
 
-        jScrollPane1.setViewportView(jPanel1);
+        fWashAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        fWashAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        fWashAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        fWashAddBtn.setText("Add to Cart");
+        fWashAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fWashAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(fWashAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 1847, 150, -1));
+
+        fWashRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        fWashRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        fWashRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        fWashRemoveBtn.setText("Remove from Cart");
+        fWashRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fWashRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(fWashRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 1847, 150, -1));
+
+        jewelryAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        jewelryAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jewelryAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        jewelryAddBtn.setText("Add to Cart");
+        jewelryAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jewelryAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jewelryAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2059, 150, -1));
+
+        jewelryRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        jewelryRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jewelryRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        jewelryRemoveBtn.setText("Remove from Cart");
+        jewelryRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jewelryRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jewelryRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 2059, 151, -1));
+
+        cCupsAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        cCupsAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cCupsAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        cCupsAddBtn.setText("Add to Cart");
+        cCupsAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cCupsAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cCupsAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2263, 150, -1));
+
+        cCupsRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        cCupsRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cCupsRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        cCupsRemoveBtn.setText("Remove from Cart");
+        cCupsRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cCupsRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cCupsRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 2263, 150, -1));
+
+        tBagsAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        tBagsAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tBagsAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        tBagsAddBtn.setText("Add to Cart");
+        tBagsAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tBagsAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tBagsAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2469, 150, -1));
+
+        tBagsRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        tBagsRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tBagsRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        tBagsRemoveBtn.setText("Remove from Cart");
+        tBagsRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tBagsRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tBagsRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 2469, 150, -1));
+
+        chargerAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        chargerAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        chargerAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        chargerAddBtn.setText("Add to Cart");
+        chargerAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chargerAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(chargerAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 2683, 150, -1));
+
+        chargerRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        chargerRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        chargerRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        chargerRemoveBtn.setText("Remove from Cart");
+        chargerRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chargerRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(chargerRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 2683, 150, -1));
+
+        binAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        binAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        binAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        binAddBtn.setText("Add to Cart");
+        binAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                binAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(binAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 2899, 150, -1));
+
+        binRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        binRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        binRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        binRemoveBtn.setText("Remove from Cart");
+        binRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                binRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(binRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 2899, 150, -1));
+
+        shirtAddBtn.setBackground(new java.awt.Color(0, 102, 102));
+        shirtAddBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        shirtAddBtn.setForeground(new java.awt.Color(153, 255, 153));
+        shirtAddBtn.setText("Add to Cart");
+        shirtAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shirtAddBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(shirtAddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 3101, 150, -1));
+
+        shirtRemoveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        shirtRemoveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        shirtRemoveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        shirtRemoveBtn.setText("Remove from Cart");
+        shirtRemoveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shirtRemoveBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(shirtRemoveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 3101, 150, -1));
+
+        completeOrderBtn.setBackground(new java.awt.Color(0, 102, 102));
+        completeOrderBtn.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        completeOrderBtn.setForeground(new java.awt.Color(153, 255, 153));
+        completeOrderBtn.setText("Complete Order");
+        completeOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completeOrderBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(completeOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 160, 50));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vector-shopping-cart-icon.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, 88, 64));
+
+        jLabel10.setBackground(new java.awt.Color(153, 255, 153));
+        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 204, 153));
+        jLabel10.setText("Sustainable Marketplace");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 500, -1));
+
+        jScrollPane2.setViewportView(jPanel2);
 
         javax.swing.GroupLayout marketplacePnlLayout = new javax.swing.GroupLayout(marketplacePnl);
         marketplacePnl.setLayout(marketplacePnlLayout);
         marketplacePnlLayout.setHorizontalGroup(
             marketplacePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
         );
         marketplacePnlLayout.setVerticalGroup(
             marketplacePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, marketplacePnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
         );
 
         quizPnl.setBackground(new java.awt.Color(55, 162, 179));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel2.setText("Choose the Difficulty: ");
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 204, 153));
+        jLabel1.setText("Quiz");
+
+        easyBtn.setBackground(new java.awt.Color(0, 102, 102));
+        easyBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        easyBtn.setForeground(new java.awt.Color(153, 255, 153));
+        easyBtn.setText("Easy");
+        easyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                easyBtnActionPerformed(evt);
+            }
+        });
+
+        mediumBtn.setBackground(new java.awt.Color(0, 102, 102));
+        mediumBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mediumBtn.setForeground(new java.awt.Color(153, 255, 153));
+        mediumBtn.setText("Medium");
+        mediumBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mediumBtnActionPerformed(evt);
+            }
+        });
+
+        hardBtn.setBackground(new java.awt.Color(0, 102, 102));
+        hardBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        hardBtn.setForeground(new java.awt.Color(153, 255, 153));
+        hardBtn.setText("Hard");
+        hardBtn.setToolTipText("");
+        hardBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardBtnActionPerformed(evt);
+            }
+        });
+
+        extremeBtn.setBackground(new java.awt.Color(0, 102, 102));
+        extremeBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        extremeBtn.setForeground(new java.awt.Color(153, 255, 153));
+        extremeBtn.setText("Extreme");
+        extremeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extremeBtnActionPerformed(evt);
+            }
+        });
+
+        option1Btn.setBackground(new java.awt.Color(55, 162, 179));
+        quizOptions.add(option1Btn);
+        option1Btn.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        option1Btn.setForeground(new java.awt.Color(153, 255, 153));
+        option1Btn.setText("option 1");
+        option1Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                option1BtnActionPerformed(evt);
+            }
+        });
+
+        option2Btn.setBackground(new java.awt.Color(55, 162, 179));
+        quizOptions.add(option2Btn);
+        option2Btn.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        option2Btn.setForeground(new java.awt.Color(153, 255, 153));
+        option2Btn.setText("option 2");
+
+        option3Btn.setBackground(new java.awt.Color(55, 162, 179));
+        quizOptions.add(option3Btn);
+        option3Btn.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        option3Btn.setForeground(new java.awt.Color(153, 255, 153));
+        option3Btn.setText("option 3");
+
+        option4Btn.setBackground(new java.awt.Color(55, 162, 179));
+        quizOptions.add(option4Btn);
+        option4Btn.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        option4Btn.setForeground(new java.awt.Color(153, 255, 153));
+        option4Btn.setText("option 4");
+
+        QuestionLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        QuestionLbl.setForeground(new java.awt.Color(255, 204, 204));
+        QuestionLbl.setText("Present the question");
+
+        SubmitBtn.setBackground(new java.awt.Color(0, 102, 102));
+        SubmitBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        SubmitBtn.setForeground(new java.awt.Color(153, 255, 153));
+        SubmitBtn.setText("Submit");
+        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitBtnActionPerformed(evt);
+            }
+        });
+
+        answerLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        answerLbl.setForeground(new java.awt.Color(255, 255, 153));
+        answerLbl.setText("Answer");
+
+        FactLbl.setFont(new java.awt.Font("Tw Cen MT", 2, 14)); // NOI18N
+        FactLbl.setForeground(new java.awt.Color(255, 255, 153));
+        FactLbl.setText("Fact");
 
         javax.swing.GroupLayout quizPnlLayout = new javax.swing.GroupLayout(quizPnl);
         quizPnl.setLayout(quizPnlLayout);
         quizPnlLayout.setHorizontalGroup(
             quizPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGroup(quizPnlLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(quizPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(answerLbl)
+                    .addComponent(FactLbl)
+                    .addComponent(QuestionLbl)
+                    .addGroup(quizPnlLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, 0)
+                        .addGroup(quizPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(quizPnlLayout.createSequentialGroup()
+                                .addComponent(easyBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(mediumBtn)
+                                .addGap(10, 10, 10)
+                                .addComponent(hardBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(extremeBtn)))
+                        .addGap(16, 16, 16))
+                    .addComponent(option1Btn)
+                    .addComponent(option2Btn)
+                    .addComponent(option3Btn)
+                    .addComponent(option4Btn))
+                .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SubmitBtn)
+                .addContainerGap())
         );
         quizPnlLayout.setVerticalGroup(
             quizPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGroup(quizPnlLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(quizPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(easyBtn)
+                    .addComponent(mediumBtn)
+                    .addComponent(hardBtn)
+                    .addComponent(extremeBtn))
+                .addGap(18, 18, 18)
+                .addComponent(QuestionLbl)
+                .addGap(18, 18, 18)
+                .addComponent(option1Btn)
+                .addGap(19, 19, 19)
+                .addComponent(option2Btn)
+                .addGap(19, 19, 19)
+                .addComponent(option3Btn)
+                .addGap(19, 19, 19)
+                .addComponent(option4Btn)
+                .addGap(18, 18, 18)
+                .addComponent(answerLbl)
+                .addGap(18, 18, 18)
+                .addComponent(FactLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(SubmitBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1191,32 +2044,41 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(homePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(242, Short.MAX_VALUE)
+                    .addGap(0, 224, Short.MAX_VALUE)
+                    .addComponent(quizPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 236, Short.MAX_VALUE)
+                    .addComponent(step2homePnl, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(234, Short.MAX_VALUE)
                     .addComponent(marketplacePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(240, Short.MAX_VALUE)
-                    .addComponent(quizPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addGap(0, 235, Short.MAX_VALUE)
+                    .addComponent(step3homePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(homePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(quizPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(step2homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(marketplacePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(marketplacePnl, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 7, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(quizPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(step3homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -1224,50 +2086,32 @@ public class TransitTraceGUI extends javax.swing.JFrame {
 
     private void homeButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonPnlMouseClicked
         homePnl.setVisible(true);
+        step2homePnl.setVisible(false);
+        step3homePnl.setVisible(false);
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(false);
+        
     }//GEN-LAST:event_homeButtonPnlMouseClicked
 
     private void marketplaceButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketplaceButtonPnlMouseClicked
 // temporary measure
         homePnl.setVisible(false);
+        step2homePnl.setVisible(false);        
+        step3homePnl.setVisible(false);
         marketplacePnl.setVisible(true);
         quizPnl.setVisible(false);
     }//GEN-LAST:event_marketplaceButtonPnlMouseClicked
 
     private void quizButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizButtonPnlMouseClicked
-        homePnl.setVisible(true);
+        homePnl.setVisible(false);
+        step2homePnl.setVisible(false);
+        step3homePnl.setVisible(false);
         marketplacePnl.setVisible(false);
-        quizPnl.setVisible(false);
-        QuizGUI myQuiz;
-        myQuiz = new QuizGUI();
-        myQuiz.setVisible(true);
+        quizPnl.setVisible(true);
+//        QuizGUI myQuiz;
+//        myQuiz = new QuizGUI();
+//        myQuiz.setVisible(true);
     }//GEN-LAST:event_quizButtonPnlMouseClicked
-
-    private void eMobilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobilityBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eMobilityBtnActionPerformed
-
-    private void metroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metroBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_metroBtnActionPerformed
-
-    private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_trainBtnActionPerformed
-
-    private void carBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carBtnMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carBtnMouseClicked
-
-    private void carBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carBtnActionPerformed
-
-    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_nextBtnActionPerformed
 
     private void shirtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shirtAddActionPerformed
         // TODO add your handling code here:
@@ -1329,6 +2173,1022 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bottleAddActionPerformed
 
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        int zeroCheck = 0;
+        int step2ReqCheck = 0;
+        resetStep2Page();
+        for (TransportMode myT: transportModes){
+            if (myT instanceof Car){
+                if(carSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Car does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) carSpnr.getValue());
+                    step2CarBtn.setEnabled(true);
+                    step2CarElectricBtn.setEnabled(true);
+                    step2CarHybridBtn.setEnabled(true);
+                    step2CarPetrolBtn.setEnabled(true);
+                    step2CarDieselBtn.setEnabled(true);
+                    step2ReqCheck++;
+                }                
+            }
+            else if (myT instanceof Motorbike){
+                if(motorbikeSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Motorbike does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) motorbikeSpnr.getValue());
+                }
+            }
+            else if (myT instanceof Bus){
+                if(busSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Bus does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) busSpnr.getValue());
+                }
+            }
+            else if (myT instanceof Tram){
+                if(tramSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Tram does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) tramSpnr.getValue());
+                }
+            }
+            else if (myT instanceof Metro){
+                if(metroSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Metro does not have a distance"));
+                    zeroCheck++;
+                    
+                }
+                else{
+                    myT.setDistance((double)metroSpnr.getValue());
+                    step2MetroBtn.setEnabled(true);
+                    step2MetroElectricBtn.setEnabled(true);
+                    step2MetroDieselBtn.setEnabled(true);
+                    step2ReqCheck++;
+                }
+                
+            }
+            else if (myT instanceof Train){
+                if(trainSpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("Train does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) trainSpnr.getValue());
+                    step2TrainBtn.setEnabled(true);
+                    step2TrainElectricBtn.setEnabled(true);
+                    step2TrainDieselBtn.setEnabled(true);
+                    step2ReqCheck++;
+                }                
+            }
+            else if (myT instanceof EMobility){
+                if(eMobilitySpnr.getValue().toString().equals("0")){
+                    JOptionPane.showMessageDialog(null, ("eMobility does not have a distance"));
+                    zeroCheck++;
+                }
+                else{
+                    myT.setDistance((double) eMobilitySpnr.getValue());
+                }
+            }            
+        }
+        if(zeroCheck==0 & step2ReqCheck==0){
+                homePnl.setVisible(false);
+                step2homePnl.setVisible(false);
+                step3homePnl.setVisible(true);
+            }
+            else if(zeroCheck==0 & step2ReqCheck!=0){
+                homePnl.setVisible(false);
+                step2homePnl.setVisible(true);
+                step3homePnl.setVisible(false);
+            }
+    }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void eMobilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobilityBtnActionPerformed
+        if(eMobilityBtn.isSelected()){
+            EMobility myEMobility = new EMobility();
+            transportModes.add(myEMobility);
+        }
+        else{
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof EMobility){
+                    transportModes.remove(i);
+                }
+            }
+        }
+        
+        if(!eMobilitySpnr.isEnabled()){
+            eMobilitySpnr.setEnabled(true);
+        }
+        else{
+            eMobilitySpnr.setEnabled(false);
+            eMobilitySpnr.setValue(0);
+        }
+    }//GEN-LAST:event_eMobilityBtnActionPerformed
+
+    private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
+        if(trainBtn.isSelected()){
+            Train myTrain = new Train();
+            transportModes.add(myTrain);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Train){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_trainBtnActionPerformed
+
+    private void trainBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_trainBtnStateChanged
+        // TODO add your handling code here:
+        if(!trainSpnr.isEnabled()){
+            trainSpnr.setEnabled(true);
+        }
+        else{
+            trainSpnr.setEnabled(false);
+            trainSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_trainBtnStateChanged
+
+    private void tramBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tramBtnStateChanged
+        // TODO add your handling code here:
+        if(!tramSpnr.isEnabled()){
+            tramSpnr.setEnabled(true);
+        }
+        else{
+            tramSpnr.setEnabled(false);
+            tramSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_tramBtnStateChanged
+
+    private void motorbikeBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_motorbikeBtnStateChanged
+        // TODO add your handling code here:
+        if(!motorbikeSpnr.isEnabled()){
+            motorbikeSpnr.setEnabled(true);
+        }
+        else{
+            motorbikeSpnr.setEnabled(false);
+            motorbikeSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_motorbikeBtnStateChanged
+
+    private void metroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metroBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(metroBtn.isSelected()){
+            Metro myMetro = new Metro();
+            transportModes.add(myMetro);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Metro){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_metroBtnActionPerformed
+
+    private void metroBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_metroBtnStateChanged
+        // TODO add your handling code here:
+        if(!metroSpnr.isEnabled()){
+            metroSpnr.setEnabled(true);
+        }
+        else{
+            metroSpnr.setEnabled(false);
+            metroSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_metroBtnStateChanged
+
+    private void busBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busBtnStateChanged
+        // TODO add your handling code here:
+        if(!busSpnr.isEnabled()){
+            busSpnr.setEnabled(true);
+        }
+        else{
+            busSpnr.setEnabled(false);
+            busSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_busBtnStateChanged
+
+    private void carBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carBtnActionPerformed
+        // TODO add your handling code here:
+        if(carBtn.isSelected()){
+            Car myCar = new Car();
+            transportModes.add(myCar);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Car){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_carBtnActionPerformed
+
+    private void carBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carBtnMouseClicked
+
+    private void carBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_carBtnStateChanged
+        // TODO add your handling code here:
+        if(!carSpnr.isEnabled()){
+            carSpnr.setEnabled(true);
+        }
+        else{
+            carSpnr.setEnabled(false);
+            carSpnr.setValue(0);
+        }
+    }//GEN-LAST:event_carBtnStateChanged
+
+    private void motorbikeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorbikeBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(motorbikeBtn.isSelected()){
+            Motorbike myMotorbike = new Motorbike();
+            transportModes.add(myMotorbike);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Motorbike){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_motorbikeBtnActionPerformed
+
+    private void busBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busBtnActionPerformed
+        if(busBtn.isSelected()){
+            Bus myBus = new Bus();
+            transportModes.add(myBus);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Bus){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_busBtnActionPerformed
+
+    private void tramBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tramBtnActionPerformed
+        if(tramBtn.isSelected()){
+            Tram myTram = new Tram();
+            transportModes.add(myTram);
+        }
+        else{            
+            for(int i = 0; i < transportModes.size(); i++){
+                if (transportModes.get(i) instanceof Tram){
+                    transportModes.remove(i);
+                }
+            }
+        }
+    }//GEN-LAST:event_tramBtnActionPerformed
+
+    private void step2CarBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_step2CarBtnStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2CarBtnStateChanged
+
+    private void step2CarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_step2CarBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2CarBtnMouseClicked
+
+    private void step2CarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2CarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2CarBtnActionPerformed
+
+    private void step2MetroBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_step2MetroBtnStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2MetroBtnStateChanged
+
+    private void step2MetroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2MetroBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2MetroBtnActionPerformed
+
+    private void step2TrainBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_step2TrainBtnStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2TrainBtnStateChanged
+
+    private void step2TrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2TrainBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2TrainBtnActionPerformed
+
+    private void step2NextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2NextBtnActionPerformed
+        // TODO add your handling code here:
+        for (TransportMode myT: transportModes){
+            if(myT instanceof Car){
+                if(step2CarElectricBtn.isSelected()){
+                    ((Car) myT).setIsElectric(true);
+                }
+                else if(step2CarHybridBtn.isSelected()){
+                    ((Car) myT).setIsHybrid(true);
+                }
+                else if(step2CarPetrolBtn.isSelected()){
+                    ((Car) myT).setIsPetrol(true);
+                }
+                else if(step2CarDieselBtn.isSelected()){
+                    ((Car) myT).setIsDiesel(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error when choosing transport type for car");
+                }
+            }
+            else if(myT instanceof Metro){
+                if(step2MetroElectricBtn.isSelected()){
+                    ((Metro) myT).setIsElectric(true);
+                }
+                else if(step2MetroDieselBtn.isSelected()){
+                    ((Metro) myT).setIsDiesel(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error when choosing transport type for metro");
+                }
+            }
+            else if(myT instanceof Train){
+                if(step2TrainElectricBtn.isSelected()){
+                    ((Train) myT).setIsElectric(true);
+                }
+                else if(step2TrainDieselBtn.isSelected()){
+                    ((Train) myT).setIsDiesel(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error when choosing transport type for train");
+                }
+            }
+        }
+        step2homePnl.setVisible(false);
+        step3homePnl.setVisible(true);
+    }//GEN-LAST:event_step2NextBtnActionPerformed
+
+    private void easyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyBtnActionPerformed
+        answerLbl.setVisible(false);
+        FactLbl.setVisible(false);
+        Easy e=new Easy();
+
+        difficulty=1;
+        i=(int)(Math.random()*3);
+        e.setRandomNumber(i);
+        QuestionLbl.setText(e.getQuestion());
+
+        option1Btn.setText(e.getOptions1());
+        option2Btn.setText(e.getOptions2());
+        option3Btn.setText(e.getOptions3());
+        option4Btn.setText(e.getOptions4());
+        QuestionLbl.setVisible(true);
+        option1Btn.setVisible(true);
+        option2Btn.setVisible(true);
+        option3Btn.setVisible(true);
+        option4Btn.setVisible(true);
+        SubmitBtn.setVisible(true);
+    }//GEN-LAST:event_easyBtnActionPerformed
+
+    private void mediumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumBtnActionPerformed
+        answerLbl.setVisible(false);
+        FactLbl.setVisible(false);
+        difficulty=2;
+        Medium m=new Medium();
+        i=(int)(Math.random()*3);
+        m.setRandomNumber(i);
+        QuestionLbl.setText(m.getQuestion());
+
+        option1Btn.setText(m.getOptions1());
+        option2Btn.setText(m.getOptions2());
+        option3Btn.setText(m.getOptions3());
+        option4Btn.setText(m.getOptions4());
+
+        QuestionLbl.setVisible(true);
+        option1Btn.setVisible(true);
+        option2Btn.setVisible(true);
+        option3Btn.setVisible(true);
+        option4Btn.setVisible(true);
+        SubmitBtn.setVisible(true);
+    }//GEN-LAST:event_mediumBtnActionPerformed
+
+    private void hardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardBtnActionPerformed
+        answerLbl.setVisible(false);
+        FactLbl.setVisible(false);
+        difficulty=3;
+        Hard h=new Hard();
+        i=(int)(Math.random()*3);
+        h.setRandomNumber(i);
+        QuestionLbl.setText(h.getQuestion());
+
+        option1Btn.setText(h.getOptions1());
+        option2Btn.setText(h.getOptions2());
+        option3Btn.setText(h.getOptions3());
+        option4Btn.setText(h.getOptions4());
+
+        QuestionLbl.setVisible(true);
+        option1Btn.setVisible(true);
+        option2Btn.setVisible(true);
+        option3Btn.setVisible(true);
+        option4Btn.setVisible(true);
+        SubmitBtn.setVisible(true);
+    }//GEN-LAST:event_hardBtnActionPerformed
+
+    private void extremeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extremeBtnActionPerformed
+        answerLbl.setVisible(false);
+        FactLbl.setVisible(false);
+        difficulty=4;
+        Extreme E=new Extreme();
+        i=(int)(Math.random()*3);
+        E.setRandomNumber(i);
+        QuestionLbl.setText(E.getQuestion());
+
+        option1Btn.setText(E.getOptions1());
+        option2Btn.setText(E.getOptions2());
+        option3Btn.setText(E.getOptions3());
+        option4Btn.setText(E.getOptions4());
+
+        QuestionLbl.setVisible(true);
+        option1Btn.setVisible(true);
+        option2Btn.setVisible(true);
+        option3Btn.setVisible(true);
+        option4Btn.setVisible(true);
+        SubmitBtn.setVisible(true);
+    }//GEN-LAST:event_extremeBtnActionPerformed
+
+    private void option1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1BtnActionPerformed
+
+    }//GEN-LAST:event_option1BtnActionPerformed
+
+    private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
+
+        Easy e=new Easy();
+        Medium m=new Medium();
+        Hard h=new Hard();
+        Extreme E=new Extreme();
+
+        if(difficulty==1){
+            e.setRandomNumber(i);
+            if(option1Btn.isSelected()){
+                Answer=e.getOptions1();
+
+            }
+            else if(option2Btn.isSelected()){
+                Answer=e.getOptions2();
+            }
+            else if(option3Btn.isSelected()){
+                Answer=e.getOptions3();
+            }
+            else if(option4Btn.isSelected()){
+                Answer=e.getOptions4();
+            }
+        }
+        else if(difficulty==2){
+            m.setRandomNumber(i);
+            if(option1Btn.isSelected()){
+                Answer=m.getOptions1();
+
+            }
+            else if(option2Btn.isSelected()){
+                Answer=m.getOptions2();
+            }
+            else if(option3Btn.isSelected()){
+                Answer=m.getOptions3();
+            }
+            else if(option4Btn.isSelected()){
+                Answer=m.getOptions4();
+            }
+        }
+        else if(difficulty==3){
+            h.setRandomNumber(i);
+            if(option1Btn.isSelected()){
+                Answer=h.getOptions1();
+
+            }
+            else if(option2Btn.isSelected()){
+                Answer=h.getOptions2();
+            }
+            else if(option3Btn.isSelected()){
+                Answer=h.getOptions3();
+            }
+            else if(option4Btn.isSelected()){
+                Answer=h.getOptions4();
+            }
+        }
+        else if(difficulty==4){
+            E.setRandomNumber(i);
+            if(option1Btn.isSelected()){
+                Answer=E.getOptions1();
+
+            }
+            else if(option2Btn.isSelected()){
+                Answer=E.getOptions2();
+            }
+            else if(option3Btn.isSelected()){
+                Answer=E.getOptions3();
+            }
+            else if(option4Btn.isSelected()){
+                Answer=E.getOptions4();
+            }
+        }
+
+        if(difficulty==1){
+            e.setRandomNumber(i);
+            if(Answer.equals(e.getAnswer())){
+                answerLbl.setText("The answer you Have Selected is correct");
+                FactLbl.setText(e.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+
+            }
+            else{
+                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+e.getAnswer());
+                FactLbl.setText(e.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+
+            }
+
+        }
+
+        else if(difficulty==2){
+            m.setRandomNumber(i);
+            if(Answer.equals(m.getAnswer())){
+                answerLbl.setText("The answer you Have Selected is correct");
+                FactLbl.setText(m.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+            }
+            else{
+                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+m.getAnswer());
+                FactLbl.setText(m.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+            }
+
+        }
+
+        else if(difficulty==3){
+            h.setRandomNumber(i);
+            if(Answer.equals(h.getAnswer())){
+                answerLbl.setText("The answer you Have Selected is correct");
+                FactLbl.setText(h.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+            }
+            else{
+                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+h.getAnswer());
+                FactLbl.setText(h.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+            }
+
+        }
+        else if(difficulty==4){
+            E.setRandomNumber(i);
+            if(Answer.equals(E.getAnswer())){
+                answerLbl.setText("The answer you Have Selected is correct");
+                FactLbl.setText(E.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+
+            }
+            else{
+                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+E.getAnswer());
+                FactLbl.setText(E.getFact());
+                answerLbl.setVisible(true);
+                FactLbl.setVisible(true);
+
+            }
+
+        }
+
+    }//GEN-LAST:event_SubmitBtnActionPerformed
+
+    private void eMobilityBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eMobilityBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eMobilityBtnMouseClicked
+
+    private void eMobilityBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_eMobilityBtnStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eMobilityBtnStateChanged
+
+    private void step2homePnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step2homePnlComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_step2homePnlComponentShown
+
+    private void step3homePnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step3homePnlComponentShown
+        step3TitleResultLbl.setText(sumEmissions()+"g");
+        
+        for(int i = 0; i < step3check; i++){
+            if(transportModes.get(i) instanceof Car){
+                double x = ((Car)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Car:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof Bus){
+                double x = ((Bus)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Bus:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof Tram){
+                double x = ((Tram)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Tram:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof Train){
+                double x = ((Train)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Train:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof Metro){
+                double x = ((Metro)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Metro:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof Motorbike){
+                double x = ((Motorbike)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("Motorbike:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            else if(transportModes.get(i) instanceof EMobility){
+                double x = ((EMobility)transportModes.get(i)).getEmission();
+                
+                step3Labels.get(i).setText("E-Mobility:");
+                step3Labels.get(i+7).setText(x+"g");
+                step3Labels.get(i).setVisible(true);
+                step3Labels.get(i+7).setVisible(true);
+            }
+            
+            
+        }
+    }//GEN-LAST:event_step3homePnlComponentShown
+
+    private void step3MarketplaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step3MarketplaceBtnActionPerformed
+        // TODO add your handling code here:
+        homePnl.setVisible(false);
+        step2homePnl.setVisible(false);        
+        step3homePnl.setVisible(false);
+        marketplacePnl.setVisible(true);
+        quizPnl.setVisible(false);
+    }//GEN-LAST:event_step3MarketplaceBtnActionPerformed
+
+    private void step3HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step3HomeBtnActionPerformed
+        // TODO add your handling code here:
+        homePnl.setVisible(true);
+        step2homePnl.setVisible(false);        
+        step3homePnl.setVisible(false);
+        marketplacePnl.setVisible(false);
+        quizPnl.setVisible(false);
+    }//GEN-LAST:event_step3HomeBtnActionPerformed
+    private void lightAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        bulb = new Product("Sustainable", "LED Light Bulbs", "Energy Efficient light bulbs that las longer and consume less energy that traditional bulbs.", 6.99);
+        
+        cart.addItem(bulb);
+        cart.updateCart();
+    }                                           
+
+    private void nBooksRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+        if (nBooks != null) {
+        int removedCount = cart.removeItem(nBooks);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, nBooks.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                               
+
+    private void jewelryAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+        jewelry = new Product("Sustainable", "Upcycled Jewelry", "Jewelry made from repurposed materials, reducing the environmental impact of mining", 19.99);
+        
+        cart.addItem(jewelry);
+        cart.updateCart();
+    }                                             
+
+    private void wBottleBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
+         // TODO add your handling code here:
+        waterBottle = new Product("Sustainable", "Reusable Water Bottle", "Reduce single-use plastic waste by using a durable, refillable water bottle.", 9.99);
+        
+        cart.addItem(waterBottle);
+        cart.updateCart();
+        
+        
+    }                                          
+
+    private void tBrushAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+        tBrush = new Product("Sustainable", "Bamboo Tooth Brush", "An eco-friendly alternative to plastic toothbrushes.", 4.99);
+        
+        cart.addItem(tBrush);
+        cart.updateCart();
+    }                                            
+
+    private void coffeeAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+        fairCoffee = new Product("Sustainable", "Fair Trade Coffee", "Coffee produced under fair trade conditions, ensuring fair wages and ethical practices in the supply chain", 12.99);
+       
+        cart.addItem(fairCoffee);
+        cart.updateCart();
+    }                                            
+
+    private void cutleryAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+        cutlery = new Product("Sustainable", "Biodegradable Cutlery", "An eco alternative to plastic cutlery", 3.99);
+       
+        cart.addItem(cutlery);
+        cart.updateCart();
+    }                                             
+
+    private void jeansAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        jeans = new Product("Sustainable", "Organic Cotton Jeans", "A pair of jeans made from organic cotton, which is grown without the use of synthetic pesticides or fertilzers", 18.99);
+        
+        cart.addItem(jeans);
+        cart.updateCart();
+    }                                           
+
+    private void sBagAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        sBag = new Product("Sustainable", "Reusable Shopping Bag", "Replace plastic bags with durable, reusable shopping bags made from materials like cotton or jute", 2.49);
+        
+        cart.addItem(sBag);
+        cart.updateCart();
+    }                                          
+
+    private void nBooksAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+        nBooks = new Product("Sustainable", "Sustainable Notebooks", "Notebooks made nfrom recycled or sustainably sourced paper, often with eco-friendly covers.", 5.99);
+        
+        cart.addItem(nBooks);
+       cart.updateCart();
+    }                                            
+
+    private void fWashAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        fWash = new Product("Sustainable", "Organic & Natural Face Wash", "A face wash made from organic and natural ingredients, minimizing the use of synthetic chemicals", 7.99);
+       
+        cart.addItem(fWash);
+        cart.updateCart();
+    }                                           
+
+    private void cCupsAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        cCup = new Product("Sustainable", "Resuable Coffee Cups", "Bring and use your own coffee cup everywhere to reduce the use of disposable cups.", 8.99);
+        
+        cart.addItem(cCup);
+        cart.updateCart();
+    }                                           
+
+    private void tBagsAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        trashBags = new Product("Sustainable", "Biodegradable Trash Bags", "Trash bags that braek down naturally, reducing plastic waste in landfills", 4.99);
+       
+        cart.addItem(trashBags);
+        cart.updateCart();
+    }                                           
+
+    private void chargerAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+        charger = new Product("Sustainable", "Hybrid Solar Charger", "Portable chargers that combine solar and traditional charging methods for increased efficiency", 29.99);
+        
+        cart.addItem(charger);
+        cart.updateCart();
+    }                                             
+
+    private void binAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        cBin = new Product("Sustainable", "Compost Bins", "Containers designed for composting organic waste, yurning it into nutrient-rich compost for gardening", 39.99);
+       
+        cart.addItem(cBin);
+        cart.updateCart();
+    }                                         
+
+    private void shirtAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        shirt = new Product("Sustainable", "Oranginc Cotton Shirt", "A T-shirt made from organic cotton, which is grown without the use of synthetic pesticides or fertilizers.", 10.99);
+       
+        cart.addItem(shirt);
+        cart.updateCart();
+    }                                           
+
+    private void wBottleRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here: 
+       if (waterBottle != null) {
+        int removedCount = cart.removeItem(waterBottle);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, waterBottle.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+        
+    }                                                
+
+    private void completeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+       OrderConfirmation order = new OrderConfirmation(cart);
+       order.orderConfirmation();
+    }                                                
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        // TODO add your handling code here:
+        if (cart.cartItems.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Your cart is empty. There are no items to display.");
+    } else {
+        cart.viewCart();
+        }
+    }                                    
+
+    private void tBrushRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+        if (tBrush != null) {
+        int removedCount = cart.removeItem(tBrush);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, tBrush.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                               
+
+    private void coffeeRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+        if (fairCoffee != null) {
+        int removedCount = cart.removeItem(fairCoffee);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, fairCoffee.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                               
+
+    private void cutleryRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+        if (cutlery != null) {
+        int removedCount = cart.removeItem(cutlery);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, cutlery.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                                
+
+    private void jeansRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (jeans != null) {
+        int removedCount = cart.removeItem(jeans);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, jeans.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                              
+
+    private void lightRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (bulb != null) {
+        int removedCount = cart.removeItem(bulb);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, bulb.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                              
+
+    private void sBagRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+        if (sBag != null) {
+        int removedCount = cart.removeItem(sBag);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, sBag.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                             
+
+    private void fWashRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (fWash != null) {
+        int removedCount = cart.removeItem(fWash);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, fWash.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                              
+
+    private void jewelryRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+        if (jewelry != null) {
+        int removedCount = cart.removeItem(jewelry);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, jewelry.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                                
+
+    private void cCupsRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (cCup != null) {
+        int removedCount = cart.removeItem(cCup);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, cCup.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                              
+
+    private void tBagsRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (trashBags != null) {
+        int removedCount = cart.removeItem(trashBags);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, trashBags.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                              
+
+    private void chargerRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+        if (charger != null) {
+        int removedCount = cart.removeItem(charger);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, charger.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                                
+
+    private void binRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+        if (cBin != null) {
+        int removedCount = cart.removeItem(cBin);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, cBin.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    }                                            
+
+    private void shirtRemoveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        if (shirt != null) {
+        int removedCount = cart.removeItem(shirt);
+ 
+        if (removedCount > 0) {
+            JOptionPane.showMessageDialog(null, shirt.getProductName() + " removed from your cart.");
+        } 
+        cart.updateCart();
+        cart.cartItems.size();
+    }
+    } 
     /**
      * @param args the command line arguments
      */
@@ -1365,124 +3225,199 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton binAdd;
-    private javax.swing.JLabel binDes1Lbl;
-    private javax.swing.JLabel binDes2Lbl;
-    private javax.swing.JLabel binLbl;
-    private javax.swing.JLabel binPrice;
-    private javax.swing.JLabel binTitleLbl;
-    private javax.swing.JRadioButton bottleAdd;
-    private javax.swing.JLabel bottleDesLbl;
-    private javax.swing.JLabel bottlePriceLbl;
-    private javax.swing.JLabel bottleTitleLbl;
+    private javax.swing.JLabel FactLbl;
+    private javax.swing.JLabel QuestionLbl;
+    private javax.swing.JButton SubmitBtn;
+    private javax.swing.JLabel answerLbl;
+    private javax.swing.JButton binAddBtn;
+    private javax.swing.JLabel binDes1Lbl1;
+    private javax.swing.JLabel binDes2Lbl1;
+    private javax.swing.JLabel binLbl1;
+    private javax.swing.JLabel binPrice1;
+    private javax.swing.JButton binRemoveBtn;
+    private javax.swing.JLabel binTitleLbl1;
+    private javax.swing.JLabel bottleDesLbl1;
+    private javax.swing.JLabel bottlePriceLbl1;
+    private javax.swing.JLabel bottleTitleLbl1;
     private javax.swing.JToggleButton busBtn;
     private javax.swing.JSpinner busSpnr;
-    private javax.swing.JRadioButton cCupAdd;
-    private javax.swing.JLabel cCupDes1Lbl;
-    private javax.swing.JLabel cCupDes1Lbl1;
-    private javax.swing.JLabel cCupDes2Lbl;
-    private javax.swing.JLabel cCupPrice;
-    private javax.swing.JLabel cCupTitleLbl;
+    private javax.swing.JLabel cCupDes1Lbl2;
+    private javax.swing.JLabel cCupDes1Lbl3;
+    private javax.swing.JLabel cCupDes2Lbl1;
+    private javax.swing.JLabel cCupPrice1;
+    private javax.swing.JLabel cCupTitleLbl1;
+    private javax.swing.JButton cCupsAddBtn;
+    private javax.swing.JButton cCupsRemoveBtn;
     private javax.swing.JToggleButton carBtn;
     private javax.swing.JSpinner carSpnr;
-    private javax.swing.JLabel cartLbl;
-    private javax.swing.JRadioButton chargerAdd;
-    private javax.swing.JLabel chargerDes1Lbl;
-    private javax.swing.JLabel chargerDes2lbl;
-    private javax.swing.JLabel chargerLbl;
-    private javax.swing.JLabel chargerPrice;
-    private javax.swing.JLabel chargerTitleLbl;
-    private javax.swing.JRadioButton coffeeAdd;
-    private javax.swing.JLabel coffeeCupLbl;
-    private javax.swing.JLabel coffeeDes1Lbl;
-    private javax.swing.JLabel coffeeDes2;
-    private javax.swing.JLabel coffeeLbl;
-    private javax.swing.JLabel coffeePrice;
-    private javax.swing.JLabel coffeeTitleLbl;
-    private javax.swing.JRadioButton cutleryAdd;
-    private javax.swing.JLabel cutleryDesLbl;
-    private javax.swing.JLabel cutleryPrice;
-    private javax.swing.JLabel cutleryTitleLbl;
-    private javax.swing.JLabel cutleryTitleLbl1;
-    private javax.swing.JLabel cuttleryLbl;
+    private javax.swing.JButton chargerAddBtn;
+    private javax.swing.JLabel chargerDes1Lbl1;
+    private javax.swing.JLabel chargerDes2lbl1;
+    private javax.swing.JLabel chargerLbl1;
+    private javax.swing.JLabel chargerPrice1;
+    private javax.swing.JButton chargerRemoveBtn;
+    private javax.swing.JLabel chargerTitleLbl1;
+    private javax.swing.JButton coffeeAddBtn;
+    private javax.swing.JLabel coffeeCupLbl1;
+    private javax.swing.JLabel coffeeDes1Lbl1;
+    private javax.swing.JLabel coffeeDes3;
+    private javax.swing.JLabel coffeeLbl1;
+    private javax.swing.JLabel coffeePrice1;
+    private javax.swing.JButton coffeeRemoveBtn;
+    private javax.swing.JLabel coffeeTitleLbl1;
+    private javax.swing.JToggleButton completeOrderBtn;
+    private javax.swing.JButton cutleryAddBtn;
+    private javax.swing.JLabel cutleryDesLbl1;
+    private javax.swing.JLabel cutleryPrice1;
+    private javax.swing.JButton cutleryRemoveBtn;
+    private javax.swing.JLabel cutleryTitleLbl2;
+    private javax.swing.JLabel cutleryTitleLbl3;
+    private javax.swing.JLabel cuttleryLbl1;
     private javax.swing.JToggleButton eMobilityBtn;
     private javax.swing.JSpinner eMobilitySpnr;
-    private javax.swing.JRadioButton fWashAdd;
-    private javax.swing.JLabel fWashDes1Lbl;
-    private javax.swing.JLabel fWashDes2Lbl;
-    private javax.swing.JLabel fWashLbl;
-    private javax.swing.JLabel fWashPrice;
-    private javax.swing.JLabel fWashTitleLbl;
+    private javax.swing.JButton easyBtn;
+    private javax.swing.JButton extremeBtn;
+    private javax.swing.JButton fWashAddBtn;
+    private javax.swing.JLabel fWashDes1Lbl1;
+    private javax.swing.JLabel fWashDes2Lbl1;
+    private javax.swing.JLabel fWashLbl1;
+    private javax.swing.JLabel fWashPrice1;
+    private javax.swing.JButton fWashRemoveBtn;
+    private javax.swing.JLabel fWashTitleLbl1;
+    private javax.swing.JButton hardBtn;
     private javax.swing.JPanel homeButtonPnl;
     private javax.swing.JLabel homeLbl;
     private javax.swing.JPanel homePnl;
     private javax.swing.JLabel homeTitleLbl;
     private javax.swing.JLabel instructionLbl;
+    private javax.swing.JLabel instructionLbl1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton jeansAdd;
-    private javax.swing.JLabel jeansDes1Lbl;
-    private javax.swing.JLabel jeansDes2Lbl;
-    private javax.swing.JLabel jeansLbl;
-    private javax.swing.JLabel jeansPrice;
-    private javax.swing.JRadioButton jewelryAdd;
-    private javax.swing.JLabel jewelryDes1Lbl;
-    private javax.swing.JLabel jewelryDes2Lbl;
-    private javax.swing.JLabel jewelryLbl;
-    private javax.swing.JLabel jewelryPrice;
-    private javax.swing.JLabel jewelryTitleLbl;
-    private javax.swing.JRadioButton lightAdd;
-    private javax.swing.JLabel lightDes1Lbl;
-    private javax.swing.JLabel lightDes2Lbl;
-    private javax.swing.JLabel lightLbl;
-    private javax.swing.JLabel lightPrice;
-    private javax.swing.JLabel lightTitleLbl;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jeansAddBtn;
+    private javax.swing.JLabel jeansDes1Lbl1;
+    private javax.swing.JLabel jeansDes2Lbl1;
+    private javax.swing.JLabel jeansLbl1;
+    private javax.swing.JLabel jeansPrice1;
+    private javax.swing.JButton jeansRemoveBtn;
+    private javax.swing.JButton jewelryAddBtn;
+    private javax.swing.JLabel jewelryDes1Lbl1;
+    private javax.swing.JLabel jewelryDes2Lbl1;
+    private javax.swing.JLabel jewelryLbl1;
+    private javax.swing.JLabel jewelryPrice1;
+    private javax.swing.JButton jewelryRemoveBtn;
+    private javax.swing.JLabel jewelryTitleLbl1;
+    private javax.swing.JButton lightAddBtn;
+    private javax.swing.JLabel lightDes1Lbl1;
+    private javax.swing.JLabel lightDes2Lbl1;
+    private javax.swing.JLabel lightLbl1;
+    private javax.swing.JLabel lightPrice1;
+    private javax.swing.JButton lightRemoveBtn;
+    private javax.swing.JLabel lightTitleLbl1;
     private javax.swing.JPanel logoButtonPnl;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JPanel marketplaceButtonPnl;
     private javax.swing.JLabel marketplaceLbl;
     private javax.swing.JPanel marketplacePnl;
+    private javax.swing.JButton mediumBtn;
     private javax.swing.JPanel menuPnl;
     private javax.swing.JToggleButton metroBtn;
     private javax.swing.JSpinner metroSpnr;
     private javax.swing.JToggleButton motorbikeBtn;
     private javax.swing.JSpinner motorbikeSpnr;
-    private javax.swing.JLabel nBooksLbl;
+    private javax.swing.JButton nBooksAddBtn;
+    private javax.swing.JLabel nBooksLbl1;
+    private javax.swing.JButton nBooksRemoveBtn;
     private javax.swing.JButton nextBtn;
-    private javax.swing.JRadioButton noteBookAdd;
-    private javax.swing.JLabel noteBookDes1Lbl;
-    private javax.swing.JLabel noteBookDes2Lbl;
-    private javax.swing.JLabel noteBookPrice;
-    private javax.swing.JLabel noteBookTitleLbl;
+    private javax.swing.JLabel noteBookDes1Lbl1;
+    private javax.swing.JLabel noteBookDes2Lbl1;
+    private javax.swing.JLabel noteBookPrice1;
+    private javax.swing.JLabel noteBookTitleLbl1;
+    private javax.swing.JRadioButton option1Btn;
+    private javax.swing.JRadioButton option2Btn;
+    private javax.swing.JRadioButton option3Btn;
+    private javax.swing.JRadioButton option4Btn;
     private javax.swing.JPanel quizButtonPnl;
     private javax.swing.JLabel quizLbl;
+    private javax.swing.ButtonGroup quizOptions;
     private javax.swing.JPanel quizPnl;
-    private javax.swing.JRadioButton sBagAdd;
-    private javax.swing.JLabel sBagDes1Lbl;
-    private javax.swing.JLabel sBagDes2Lbl;
-    private javax.swing.JLabel sBagLbl;
-    private javax.swing.JLabel sBagPrice;
-    private javax.swing.JLabel sBagTitlLbl;
-    private javax.swing.JRadioButton shirtAdd;
-    private javax.swing.JLabel shirtDes1Lbl;
-    private javax.swing.JLabel shirtDes2Lbl;
-    private javax.swing.JLabel shirtLbl;
-    private javax.swing.JLabel shirtPrice;
-    private javax.swing.JLabel shirtTitleLbl;
-    private javax.swing.JLabel tBrushLbl;
-    private javax.swing.JRadioButton toothAdd;
-    private javax.swing.JLabel toothDesLbl;
-    private javax.swing.JLabel toothDesTitle;
-    private javax.swing.JLabel toothTitlLbl;
+    private javax.swing.JButton sBagAddBtn;
+    private javax.swing.JLabel sBagDes1Lbl1;
+    private javax.swing.JLabel sBagDes2Lbl1;
+    private javax.swing.JLabel sBagLbl1;
+    private javax.swing.JLabel sBagPrice1;
+    private javax.swing.JButton sBagRemoveBtn;
+    private javax.swing.JLabel sBagTitlLbl1;
+    private javax.swing.JButton shirtAddBtn;
+    private javax.swing.JLabel shirtDes1Lbl1;
+    private javax.swing.JLabel shirtDes2Lbl1;
+    private javax.swing.JLabel shirtLbl1;
+    private javax.swing.JLabel shirtPrice1;
+    private javax.swing.JButton shirtRemoveBtn;
+    private javax.swing.JLabel shirtTitleLbl1;
+    private javax.swing.JToggleButton step2CarBtn;
+    private javax.swing.JToggleButton step2CarDieselBtn;
+    private javax.swing.JToggleButton step2CarElectricBtn;
+    private javax.swing.JToggleButton step2CarHybridBtn;
+    private javax.swing.JToggleButton step2CarPetrolBtn;
+    private javax.swing.ButtonGroup step2CarType;
+    private javax.swing.JToggleButton step2MetroBtn;
+    private javax.swing.JToggleButton step2MetroDieselBtn;
+    private javax.swing.JToggleButton step2MetroElectricBtn;
+    private javax.swing.ButtonGroup step2MetroType;
+    private javax.swing.JButton step2NextBtn;
+    private javax.swing.JLabel step2TitleLbl;
+    private javax.swing.JToggleButton step2TrainBtn;
+    private javax.swing.JToggleButton step2TrainDieselBtn;
+    private javax.swing.JToggleButton step2TrainElectricBtn;
+    private javax.swing.ButtonGroup step2TrainType;
+    private javax.swing.JLabel step2UserInfoLbl;
+    private javax.swing.JPanel step2homePnl;
+    private javax.swing.JLabel step3EmissionLbl1;
+    private javax.swing.JLabel step3EmissionLbl2;
+    private javax.swing.JLabel step3EmissionLbl3;
+    private javax.swing.JLabel step3EmissionLbl4;
+    private javax.swing.JLabel step3EmissionLbl5;
+    private javax.swing.JLabel step3EmissionLbl6;
+    private javax.swing.JLabel step3EmissionLbl7;
+    private javax.swing.JButton step3HomeBtn;
+    private javax.swing.JButton step3MarketplaceBtn;
+    private javax.swing.JLabel step3TitleLbl;
+    private javax.swing.JLabel step3TitleResultLbl;
+    private javax.swing.JLabel step3VehicleLbl1;
+    private javax.swing.JLabel step3VehicleLbl2;
+    private javax.swing.JLabel step3VehicleLbl3;
+    private javax.swing.JLabel step3VehicleLbl4;
+    private javax.swing.JLabel step3VehicleLbl5;
+    private javax.swing.JLabel step3VehicleLbl6;
+    private javax.swing.JLabel step3VehicleLbl7;
+    private javax.swing.JPanel step3homePnl;
+    private javax.swing.JButton tBagsAddBtn;
+    private javax.swing.JButton tBagsRemoveBtn;
+    private javax.swing.JButton tBrushAddBtn;
+    private javax.swing.JLabel tBrushLbl1;
+    private javax.swing.JButton tBrushRemoveBtn;
+    private javax.swing.JLabel toothDesLbl1;
+    private javax.swing.JLabel toothDesTitle1;
+    private javax.swing.JLabel toothTitlLbl1;
     private javax.swing.JToggleButton trainBtn;
     private javax.swing.JSpinner trainSpnr;
     private javax.swing.JToggleButton tramBtn;
     private javax.swing.JSpinner tramSpnr;
-    private javax.swing.JRadioButton trashBagsAdd;
-    private javax.swing.JLabel trashBagsLbl;
-    private javax.swing.JLabel trashBagsPrice;
-    private javax.swing.JLabel trashBagsTitleLbl;
-    private javax.swing.JLabel wBottleLbl;
+    private javax.swing.JLabel trashBagsLbl1;
+    private javax.swing.JLabel trashBagsPrice1;
+    private javax.swing.JLabel trashBagsTitleLbl1;
+    private javax.swing.JButton wBottleBtn;
+    private javax.swing.JLabel wBottleLbl1;
+    private javax.swing.JButton wBottleRemoveBtn;
     // End of variables declaration//GEN-END:variables
 }
