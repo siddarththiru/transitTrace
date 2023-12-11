@@ -1,17 +1,21 @@
 package transittrace;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class TransitTraceGUI extends javax.swing.JFrame {
+    
+    //Siddarth
     ArrayList <TransportMode> transportModes;
     ArrayList <JLabel> step3Labels;
-    /**
-     * Creates new form TransitTraceGUI
-     */
-    
-    //Market Place
+    //Market Place- Craig
     private ShoppingCart cart;
     private Product waterBottle;
     private Product tBrush;
@@ -28,12 +32,12 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private Product charger;
     private Product cBin;
     private Product shirt;
-    
-    
+    //Harsha
     private String Answer;
     private int i;
     private int step3check;
     private int difficulty;
+    
     public TransitTraceGUI() {
         cart = new ShoppingCart();
         initComponents();
@@ -195,6 +199,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         step3MarketplaceBtn = new javax.swing.JButton();
         step3HomeBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         marketplacePnl = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -934,6 +941,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step3homePnl.setMaximumSize(new java.awt.Dimension(806, 474));
         step3homePnl.setMinimumSize(new java.awt.Dimension(806, 474));
         step3homePnl.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                step3homePnlComponentHidden(evt);
+            }
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 step3homePnlComponentShown(evt);
             }
@@ -1049,6 +1059,29 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(153, 255, 153));
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(153, 255, 153));
+        jButton2.setText("History");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jLabel11.setText("Note: Your save will override the saved data");
+
         javax.swing.GroupLayout step3homePnlLayout = new javax.swing.GroupLayout(step3homePnl);
         step3homePnl.setLayout(step3homePnlLayout);
         step3homePnlLayout.setHorizontalGroup(
@@ -1077,7 +1110,12 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                                     .addGroup(step3homePnlLayout.createSequentialGroup()
                                         .addComponent(step3MarketplaceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(39, 39, 39)
-                                        .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(step3homePnlLayout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton2))
+                                    .addComponent(jLabel11))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(step3homePnlLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -1161,11 +1199,17 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                 .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(step3VehicleLbl7)
                     .addComponent(step3EmissionLbl7))
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(3, 3, 3)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(step3MarketplaceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 74, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         marketplacePnl.setBackground(new java.awt.Color(55, 162, 179));
@@ -1995,13 +2039,12 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(hardBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(extremeBtn)))
-                        .addGap(16, 16, 16))
+                                .addComponent(extremeBtn))))
                     .addComponent(option1Btn)
                     .addComponent(option2Btn)
                     .addComponent(option3Btn)
                     .addComponent(option4Btn))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quizPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SubmitBtn)
@@ -2049,7 +2092,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 224, Short.MAX_VALUE)
-                    .addComponent(quizPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(quizPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 236, Short.MAX_VALUE)
@@ -2069,7 +2112,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             .addComponent(menuPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(quizPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+                .addComponent(quizPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(step2homePnl, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2776,7 +2819,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_step2homePnlComponentShown
 
     private void step3homePnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step3homePnlComponentShown
-        step3TitleResultLbl.setText(sumEmissions()+"g");
+    step3TitleResultLbl.setText(sumEmissions()+"g");
         
         for(int i = 0; i < step3check; i++){
             if(transportModes.get(i) instanceof Car){
@@ -2857,6 +2900,62 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(false);
     }//GEN-LAST:event_step3HomeBtnActionPerformed
+
+    private void step3homePnlComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step3homePnlComponentHidden
+        step3VehicleLbl1.setVisible(false);
+        step3VehicleLbl2.setVisible(false);
+        step3VehicleLbl3.setVisible(false);
+        step3VehicleLbl4.setVisible(false);
+        step3VehicleLbl5.setVisible(false);
+        step3VehicleLbl6.setVisible(false);
+        step3VehicleLbl7.setVisible(false);
+        step3EmissionLbl1.setVisible(false);
+        step3EmissionLbl2.setVisible(false);
+        step3EmissionLbl3.setVisible(false);
+        step3EmissionLbl4.setVisible(false);
+        step3EmissionLbl5.setVisible(false);
+        step3EmissionLbl6.setVisible(false);
+        step3EmissionLbl7.setVisible(false);
+    }//GEN-LAST:event_step3homePnlComponentHidden
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        File outFile;
+        FileWriter fw;
+        BufferedWriter bw;
+        
+        try{
+            outFile = new File("save.txt");
+            fw = new FileWriter(outFile);
+            bw = new BufferedWriter(fw);
+            bw.write(sumEmissions()+"");
+            bw.close();
+            JOptionPane.showMessageDialog(null,"Total Emissions value saved Successfully");
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null,"Error writing to file"+e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String fileOut;
+        File inFile;
+        FileReader fr;
+        BufferedReader br;
+        
+        try{
+            inFile = new File("save.txt");
+            fr = new FileReader(inFile);
+            br = new BufferedReader(fr);
+            
+            fileOut = br.readLine();
+            JOptionPane.showMessageDialog(null,"Co2 Emissions value saved is: " + fileOut + "g");
+            br.close();
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null,"Error when reading file " + e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void lightAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         bulb = new Product("Sustainable", "LED Light Bulbs", "Energy Efficient light bulbs that las longer and consume less energy that traditional bulbs.", 6.99);
@@ -3291,8 +3390,11 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel homeTitleLbl;
     private javax.swing.JLabel instructionLbl;
     private javax.swing.JLabel instructionLbl1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
