@@ -12,19 +12,20 @@ import javax.swing.JOptionPane;
  * @author murph
  */
 class OrderConfirmation extends ShoppingCart {
+    //declaring variables 
     protected ShoppingCart cart;
     protected int orderNumber;
 
-    
+    //constructor
     public OrderConfirmation(ShoppingCart cart){
         this.cart = cart;
-        randomOrderNumber();
-        
+        this.orderNumber = randomOrderNumber();
     }
+    
+    //methods
     private int randomOrderNumber() {
         Random random = new Random();
-        this.orderNumber = 1000 + random.nextInt(10000);
-        return this.orderNumber;
+        return 1000 + random.nextInt(10000);
     }
     
     public int getOrderNumber(){
@@ -35,10 +36,8 @@ class OrderConfirmation extends ShoppingCart {
         if (cart.cartItems.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Your cart is empty. Please add items before confirming your order.");
     } else {
-        JOptionPane.showMessageDialog(null, "Order Confirmation: " + "\nOrder Number: " + orderNumber + "\n");
-        cart.viewCart();
-        JOptionPane.showMessageDialog(null, "The total price of your purchase is: €" + cart.calculateTotalPrice() + "\nThank your for your purchase and thank you for supporting Sustainability!");
-    
+            cart.viewCart();
+            JOptionPane.showMessageDialog(null,"\nOrder Confirmation Number: " + orderNumber + "\nThe total price of your purchase is: €" + cart.calculateTotalPrice() + "\nThank you for supporting Sustainability!");
         }
     }
 }

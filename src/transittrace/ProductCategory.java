@@ -11,12 +11,15 @@ package transittrace;
 
 // Superclass
 class ProductCategory {
+    //declare variables 
     protected String categoryName;
 
+    //constructor
     public ProductCategory(String categoryName) {
         this.categoryName = categoryName;
     }
-
+    
+    //getters and setters
     public String getCategoryName() {
         return categoryName; 
     }

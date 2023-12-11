@@ -9,11 +9,12 @@ package transittrace;
  * @author murph
  */
 class Product extends ProductCategory {
+    //declare variables 
     protected String productName;
     protected String productDescription;
     protected double productPrice;
 
-    
+    //constructor
     public Product(String categoryName, String productName, String productDescription, Double productPrice) {
         super(categoryName);
         this.productName = productName;
@@ -22,16 +23,7 @@ class Product extends ProductCategory {
        
     }
     
-    @Override
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    @Override
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
+    //getters and setters
     public String getProductName() {
         return productName;
     }
@@ -56,8 +48,20 @@ class Product extends ProductCategory {
         this.productPrice = productPrice;
     }
     
+    //methods
     public String getProductDetails(){
         return "Product:" + productName + "\nDescription:" + productDescription + "\nPrice:" + productPrice;
+    }
+    
+    //Override methods
+    @Override
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    @Override
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 
