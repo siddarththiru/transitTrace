@@ -7,6 +7,7 @@ package transittrace;
 
 public class Bus extends TransportMode{
     private double emission;
+    //Data from https://ourworldindata.org/grapher/carbon-footprint-travel-mode?tab=table (Bus Average was used)
     private final double EMISSION_VALUE = 97;
     public Bus(){
         emission = 0;

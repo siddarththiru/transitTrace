@@ -1,3 +1,9 @@
+/*
+*EMobility.java
+*@author Siddarth Thirunavukkarasu
+*17-11-2023
+*/
+
 package transittrace;
 public class EMobility extends TransportMode{
     private double emission;

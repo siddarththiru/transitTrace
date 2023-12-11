@@ -9,6 +9,7 @@ public class Tram extends TransportMode{
     private double emissionValue;
     public Tram() {
         emission = 0;
+        //Data from https://ourworldindata.org/grapher/carbon-footprint-travel-mode?tab=table
         emissionValue = 29;
     }
     

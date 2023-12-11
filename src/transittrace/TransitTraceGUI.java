@@ -39,14 +39,15 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private int difficulty;
     
     public TransitTraceGUI() {
+        //Craig
         cart = new ShoppingCart();
         initComponents();
+        //Sid
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(false);
         step2homePnl.setVisible(false);
         step3homePnl.setVisible(false);
         transportModes = new ArrayList<>();
-        
         step3Labels = new ArrayList<>();
         step3Labels.add(step3VehicleLbl1);
         step3Labels.add(step3VehicleLbl2);
@@ -62,7 +63,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step3VehicleLbl5.setVisible(false);
         step3VehicleLbl6.setVisible(false);
         step3VehicleLbl7.setVisible(false);
-        
         step3Labels.add(step3EmissionLbl1);
         step3Labels.add(step3EmissionLbl2);
         step3Labels.add(step3EmissionLbl3);
@@ -78,6 +78,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step3EmissionLbl6.setVisible(false);
         step3EmissionLbl7.setVisible(false);
         
+        //Harsha
         i=0;
         difficulty=0;
         Answer="";
@@ -92,6 +93,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         
     }
     
+    //Sid
     private void resetStep2Page(){
         step2CarBtn.setEnabled(false);
         step2CarElectricBtn.setEnabled(false);
@@ -108,6 +110,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step2TrainDieselBtn.setEnabled(false);
     }
     
+    //Sid
     private double sumEmissions(){
         double totalEmission = 0;
         step3check=0;
@@ -199,9 +202,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         step3MarketplaceBtn = new javax.swing.JButton();
         step3HomeBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        saveBtn = new javax.swing.JButton();
+        historyBtn = new javax.swing.JButton();
+        saveWarningLbl = new javax.swing.JLabel();
         marketplacePnl = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -1059,28 +1062,28 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(153, 255, 153));
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setBackground(new java.awt.Color(0, 102, 102));
+        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(153, 255, 153));
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(153, 255, 153));
-        jButton2.setText("History");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        historyBtn.setBackground(new java.awt.Color(0, 102, 102));
+        historyBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        historyBtn.setForeground(new java.awt.Color(153, 255, 153));
+        historyBtn.setText("History");
+        historyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                historyBtnActionPerformed(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
-        jLabel11.setText("Note: Your save will override the saved data");
+        saveWarningLbl.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        saveWarningLbl.setText("Note: Your save will override the saved data");
 
         javax.swing.GroupLayout step3homePnlLayout = new javax.swing.GroupLayout(step3homePnl);
         step3homePnl.setLayout(step3homePnlLayout);
@@ -1112,10 +1115,10 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                                         .addGap(39, 39, 39)
                                         .addComponent(step3HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(step3homePnlLayout.createSequentialGroup()
-                                        .addComponent(jButton1)
+                                        .addComponent(saveBtn)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2))
-                                    .addComponent(jLabel11))))
+                                        .addComponent(historyBtn))
+                                    .addComponent(saveWarningLbl))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(step3homePnlLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -1201,10 +1204,10 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                     .addComponent(step3EmissionLbl7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(saveBtn)
+                    .addComponent(historyBtn))
                 .addGap(3, 3, 3)
-                .addComponent(jLabel11)
+                .addComponent(saveWarningLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(step3homePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(step3MarketplaceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2127,6 +2130,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Sid
     private void homeButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonPnlMouseClicked
         homePnl.setVisible(true);
         step2homePnl.setVisible(false);
@@ -2135,7 +2139,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         quizPnl.setVisible(false);
         
     }//GEN-LAST:event_homeButtonPnlMouseClicked
-
+    //Sid
     private void marketplaceButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketplaceButtonPnlMouseClicked
 // temporary measure
         homePnl.setVisible(false);
@@ -2144,14 +2148,14 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         marketplacePnl.setVisible(true);
         quizPnl.setVisible(false);
     }//GEN-LAST:event_marketplaceButtonPnlMouseClicked
-
+    //Sid
     private void quizButtonPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizButtonPnlMouseClicked
         homePnl.setVisible(false);
         step2homePnl.setVisible(false);
         step3homePnl.setVisible(false);
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(true);
-//        QuizGUI myQuiz;
+//        QuizGUI myQuiz; (no longer relevant)
 //        myQuiz = new QuizGUI();
 //        myQuiz.setVisible(true);
     }//GEN-LAST:event_quizButtonPnlMouseClicked
@@ -2207,6 +2211,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private void coffeeAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coffeeAddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_coffeeAddActionPerformed
+    // TODO add your handling code here:
 
     private void toothAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toothAddActionPerformed
         // TODO add your handling code here:
@@ -2215,11 +2220,18 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private void bottleAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottleAddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bottleAddActionPerformed
-
+    //Sid
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        
         int zeroCheck = 0;
         int step2ReqCheck = 0;
         resetStep2Page();
+        
+        //In this for-each loop, we are checking if a user selected a transport mode and forgot to type in a distance
+        //The user can unselect the transport mode or change the distance traveled on a transport Mode to proceed
+        //Additionally, if everything is ok, we are setting the distance 
+        //from the spinner field into the private variable of that respective transport mode
+        //Finally, we also enable the required buttons in the step2HomePnl if required.
         for (TransportMode myT: transportModes){
             if (myT instanceof Car){
                 if(carSpnr.getValue().toString().equals("0")){
@@ -2301,18 +2313,27 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                 }
             }            
         }
+        
+        //The conditional statements that swap panels if everything is ok and don't if it is not
         if(zeroCheck==0 & step2ReqCheck==0){
-                homePnl.setVisible(false);
-                step2homePnl.setVisible(false);
-                step3homePnl.setVisible(true);
-            }
-            else if(zeroCheck==0 & step2ReqCheck!=0){
-                homePnl.setVisible(false);
-                step2homePnl.setVisible(true);
-                step3homePnl.setVisible(false);
-            }
+            homePnl.setVisible(false);
+            step2homePnl.setVisible(false);
+            step3homePnl.setVisible(true);
+        }
+        else if(zeroCheck==0 & step2ReqCheck!=0){
+            homePnl.setVisible(false);
+            step2homePnl.setVisible(true);
+            step3homePnl.setVisible(false);
+        }
     }//GEN-LAST:event_nextBtnActionPerformed
-
+    //Sid
+    //The below Button Action Performed Events do the following:
+    //We create an object of the chosen transport mode when the user clicks on it, 
+    //if there is already an object and the button is unselected, then we remove the object from the Array
+    //This sections fulfills the requirement of adding and removing objects from ArrayLists from the brief
+    
+    //The below Vehicle Button State Changed Events enable the JSpinner for the respective transport mode
+    //only when it is selected and we disable and zero the value inside at other times
     private void eMobilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMobilityBtnActionPerformed
         if(eMobilityBtn.isSelected()){
             EMobility myEMobility = new EMobility();
@@ -2325,7 +2346,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                 }
             }
         }
-        
         if(!eMobilitySpnr.isEnabled()){
             eMobilitySpnr.setEnabled(true);
         }
@@ -2334,7 +2354,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             eMobilitySpnr.setValue(0);
         }
     }//GEN-LAST:event_eMobilityBtnActionPerformed
-
     private void trainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainBtnActionPerformed
         if(trainBtn.isSelected()){
             Train myTrain = new Train();
@@ -2348,7 +2367,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_trainBtnActionPerformed
-
     private void trainBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_trainBtnStateChanged
         // TODO add your handling code here:
         if(!trainSpnr.isEnabled()){
@@ -2359,7 +2377,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             trainSpnr.setValue(0);
         }
     }//GEN-LAST:event_trainBtnStateChanged
-
     private void tramBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tramBtnStateChanged
         // TODO add your handling code here:
         if(!tramSpnr.isEnabled()){
@@ -2370,7 +2387,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             tramSpnr.setValue(0);
         }
     }//GEN-LAST:event_tramBtnStateChanged
-
     private void motorbikeBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_motorbikeBtnStateChanged
         // TODO add your handling code here:
         if(!motorbikeSpnr.isEnabled()){
@@ -2381,7 +2397,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             motorbikeSpnr.setValue(0);
         }
     }//GEN-LAST:event_motorbikeBtnStateChanged
-
     private void metroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metroBtnActionPerformed
         // TODO add your handling code here:
         
@@ -2397,7 +2412,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_metroBtnActionPerformed
-
     private void metroBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_metroBtnStateChanged
         // TODO add your handling code here:
         if(!metroSpnr.isEnabled()){
@@ -2408,7 +2422,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             metroSpnr.setValue(0);
         }
     }//GEN-LAST:event_metroBtnStateChanged
-
     private void busBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_busBtnStateChanged
         // TODO add your handling code here:
         if(!busSpnr.isEnabled()){
@@ -2419,7 +2432,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             busSpnr.setValue(0);
         }
     }//GEN-LAST:event_busBtnStateChanged
-
     private void carBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carBtnActionPerformed
         // TODO add your handling code here:
         if(carBtn.isSelected()){
@@ -2434,11 +2446,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_carBtnActionPerformed
-
     private void carBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carBtnMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_carBtnMouseClicked
-
     private void carBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_carBtnStateChanged
         // TODO add your handling code here:
         if(!carSpnr.isEnabled()){
@@ -2449,7 +2458,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             carSpnr.setValue(0);
         }
     }//GEN-LAST:event_carBtnStateChanged
-
     private void motorbikeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorbikeBtnActionPerformed
         // TODO add your handling code here:
         
@@ -2465,7 +2473,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_motorbikeBtnActionPerformed
-
     private void busBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busBtnActionPerformed
         if(busBtn.isSelected()){
             Bus myBus = new Bus();
@@ -2479,7 +2486,6 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_busBtnActionPerformed
-
     private void tramBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tramBtnActionPerformed
         if(tramBtn.isSelected()){
             Tram myTram = new Tram();
@@ -2521,9 +2527,10 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private void step2TrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2TrainBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_step2TrainBtnActionPerformed
-
+    
+    //Sid
+    //Here we are setting the transport mode's type of fuel based on what user selected
     private void step2NextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step2NextBtnActionPerformed
-        // TODO add your handling code here:
         for (TransportMode myT: transportModes){
             if(myT instanceof Car){
                 if(step2CarElectricBtn.isSelected()){
@@ -2568,7 +2575,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step2homePnl.setVisible(false);
         step3homePnl.setVisible(true);
     }//GEN-LAST:event_step2NextBtnActionPerformed
-
+    //Harsha
+    //The below 4 sections generate a random question from their respective Array when the user clicks on the button
     private void easyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyBtnActionPerformed
         answerLbl.setVisible(false);
         FactLbl.setVisible(false);
@@ -2590,7 +2598,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         option4Btn.setVisible(true);
         SubmitBtn.setVisible(true);
     }//GEN-LAST:event_easyBtnActionPerformed
-
+    //Harsha
     private void mediumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumBtnActionPerformed
         answerLbl.setVisible(false);
         FactLbl.setVisible(false);
@@ -2612,7 +2620,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         option4Btn.setVisible(true);
         SubmitBtn.setVisible(true);
     }//GEN-LAST:event_mediumBtnActionPerformed
-
+    //Harsha
     private void hardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardBtnActionPerformed
         answerLbl.setVisible(false);
         FactLbl.setVisible(false);
@@ -2634,7 +2642,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         option4Btn.setVisible(true);
         SubmitBtn.setVisible(true);
     }//GEN-LAST:event_hardBtnActionPerformed
-
+    //Harsha
     private void extremeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extremeBtnActionPerformed
         answerLbl.setVisible(false);
         FactLbl.setVisible(false);
@@ -2660,7 +2668,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private void option1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1BtnActionPerformed
 
     }//GEN-LAST:event_option1BtnActionPerformed
-
+    //Harsha
+    //This portion loops through the respective array and checks if the chosen answer is correct
+    //Additionally, depending on the result, the appropriate text information is displayed on the labels
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
 
         Easy e=new Easy();
@@ -2733,75 +2743,69 @@ public class TransitTraceGUI extends javax.swing.JFrame {
             }
         }
 
-        if(difficulty==1){
-            e.setRandomNumber(i);
-            if(Answer.equals(e.getAnswer())){
-                answerLbl.setText("The answer you Have Selected is correct");
-                FactLbl.setText(e.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-
-            }
-            else{
-                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+e.getAnswer());
-                FactLbl.setText(e.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-
-            }
-
-        }
-
-        else if(difficulty==2){
-            m.setRandomNumber(i);
-            if(Answer.equals(m.getAnswer())){
-                answerLbl.setText("The answer you Have Selected is correct");
-                FactLbl.setText(m.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-            }
-            else{
-                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+m.getAnswer());
-                FactLbl.setText(m.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-            }
-
-        }
-
-        else if(difficulty==3){
-            h.setRandomNumber(i);
-            if(Answer.equals(h.getAnswer())){
-                answerLbl.setText("The answer you Have Selected is correct");
-                FactLbl.setText(h.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-            }
-            else{
-                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+h.getAnswer());
-                FactLbl.setText(h.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-            }
-
-        }
-        else if(difficulty==4){
-            E.setRandomNumber(i);
-            if(Answer.equals(E.getAnswer())){
-                answerLbl.setText("The answer you Have Selected is correct");
-                FactLbl.setText(E.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-
-            }
-            else{
-                answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+E.getAnswer());
-                FactLbl.setText(E.getFact());
-                answerLbl.setVisible(true);
-                FactLbl.setVisible(true);
-
-            }
-
+        switch (difficulty) {
+            case 1:
+                e.setRandomNumber(i);
+                if(Answer.equals(e.getAnswer())){
+                    answerLbl.setText("The answer you Have Selected is correct");
+                    FactLbl.setText(e.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                    
+                }
+                else{
+                    answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+e.getAnswer());
+                    FactLbl.setText(e.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                    
+                }   break;
+            case 2:
+                m.setRandomNumber(i);
+                if(Answer.equals(m.getAnswer())){
+                    answerLbl.setText("The answer you Have Selected is correct");
+                    FactLbl.setText(m.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                }
+                else{
+                    answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+m.getAnswer());
+                    FactLbl.setText(m.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                }   break;
+            case 3:
+                h.setRandomNumber(i);
+                if(Answer.equals(h.getAnswer())){
+                    answerLbl.setText("The answer you Have Selected is correct");
+                    FactLbl.setText(h.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                }
+                else{
+                    answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+h.getAnswer());
+                    FactLbl.setText(h.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                }   break;
+            case 4:
+                E.setRandomNumber(i);
+                if(Answer.equals(E.getAnswer())){
+                    answerLbl.setText("The answer you Have Selected is correct");
+                    FactLbl.setText(E.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                    
+                }
+                else{
+                    answerLbl.setText("The answer you Have Selected is wrong the correct answer is "+E.getAnswer());
+                    FactLbl.setText(E.getFact());
+                    answerLbl.setVisible(true);
+                    FactLbl.setVisible(true);
+                    
+                }   break;
+            default:
+                break;
         }
 
     }//GEN-LAST:event_SubmitBtnActionPerformed
@@ -2817,7 +2821,12 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private void step2homePnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step2homePnlComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_step2homePnlComponentShown
-
+    //Sid
+    //This next method got a bit complex because I didn't want to create multiple labels for
+    //each transport mode and display only the ones user chose as it could lead to uneven spacingbetween labels.
+    //So, instead, I loop around an Array of objects of labels and enable only the required labels starting from the top.
+    //And only the required labels are displayed with the information grabbed from the Array of Objects of Transport Modes.
+    //This section fullfils the Display functionality of Array of Objects of Transport Modes from the brief.
     private void step3homePnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step3homePnlComponentShown
     step3TitleResultLbl.setText(sumEmissions()+"g");
         
@@ -2878,11 +2887,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
                 step3Labels.get(i).setVisible(true);
                 step3Labels.get(i+7).setVisible(true);
             }
-            
-            
         }
     }//GEN-LAST:event_step3homePnlComponentShown
-
+    //Sid
     private void step3MarketplaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step3MarketplaceBtnActionPerformed
         // TODO add your handling code here:
         homePnl.setVisible(false);
@@ -2891,7 +2898,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         marketplacePnl.setVisible(true);
         quizPnl.setVisible(false);
     }//GEN-LAST:event_step3MarketplaceBtnActionPerformed
-
+    //Sid
+    //Navigation part
     private void step3HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_step3HomeBtnActionPerformed
         // TODO add your handling code here:
         homePnl.setVisible(true);
@@ -2900,7 +2908,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         marketplacePnl.setVisible(false);
         quizPnl.setVisible(false);
     }//GEN-LAST:event_step3HomeBtnActionPerformed
-
+    //Sid
+    //Hides all Labels when the panel is exited so when only whatever is required is reloaded- part of bug fixes from testing
     private void step3homePnlComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_step3homePnlComponentHidden
         step3VehicleLbl1.setVisible(false);
         step3VehicleLbl2.setVisible(false);
@@ -2917,8 +2926,9 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         step3EmissionLbl6.setVisible(false);
         step3EmissionLbl7.setVisible(false);
     }//GEN-LAST:event_step3homePnlComponentHidden
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    //Sid
+    //Users have the opportunity to save one Total Co2 Emission that they have calculated
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         File outFile;
         FileWriter fw;
@@ -2935,9 +2945,10 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error writing to file"+e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
+    //Sid
+    //User can view their saved Co2 Emission value
+    private void historyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyBtnActionPerformed
         String fileOut;
         File inFile;
         FileReader fr;
@@ -2955,7 +2966,11 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error when reading file " + e);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_historyBtnActionPerformed
+    
+    //Everything below done by Craig
+    //When Add Buttons are clicked, the prodocut along with its information is added to an array of objects called the Cart
+    //When Remove Buttons are clicked the respective object is removed from the cart Array of objects
     private void lightAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         bulb = new Product("Sustainable", "LED Light Bulbs", "Energy Efficient light bulbs that las longer and consume less energy that traditional bulbs.", 6.99);
@@ -2990,9 +3005,7 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         waterBottle = new Product("Sustainable", "Reusable Water Bottle", "Reduce single-use plastic waste by using a durable, refillable water bottle.", 9.99);
         
         cart.addItem(waterBottle);
-        cart.updateCart();
-        
-        
+        cart.updateCart();  
     }                                          
 
     private void tBrushAddBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -3104,13 +3117,14 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     }
         
     }                                                
-
+    //Order confirmation dialog is displayed with a generated order ID and calculated total price
     private void completeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
        OrderConfirmation order = new OrderConfirmation(cart);
        order.orderConfirmation();
     }                                                
-
+    
+    //Information of products added in the cart are retrieved from the Array of objects, cart and displayed
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
         if (cart.cartItems.isEmpty()) {
@@ -3287,10 +3301,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
         cart.updateCart();
         cart.cartItems.size();
     }
-    } 
-    /**
-     * @param args the command line arguments
-     */
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3384,17 +3396,15 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private javax.swing.JButton fWashRemoveBtn;
     private javax.swing.JLabel fWashTitleLbl1;
     private javax.swing.JButton hardBtn;
+    private javax.swing.JButton historyBtn;
     private javax.swing.JPanel homeButtonPnl;
     private javax.swing.JLabel homeLbl;
     private javax.swing.JPanel homePnl;
     private javax.swing.JLabel homeTitleLbl;
     private javax.swing.JLabel instructionLbl;
     private javax.swing.JLabel instructionLbl1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3459,6 +3469,8 @@ public class TransitTraceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel sBagPrice1;
     private javax.swing.JButton sBagRemoveBtn;
     private javax.swing.JLabel sBagTitlLbl1;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JLabel saveWarningLbl;
     private javax.swing.JButton shirtAddBtn;
     private javax.swing.JLabel shirtDes1Lbl1;
     private javax.swing.JLabel shirtDes2Lbl1;
